@@ -1,0 +1,11 @@
+{
+  // "editor.formatOnSave": true,
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": true
+  // },
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // This works...
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+  // "prettier.enable": true
+}
