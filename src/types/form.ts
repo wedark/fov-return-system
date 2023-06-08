@@ -178,6 +178,16 @@ interface Item {
   unit: string;
   quantity: number;
 }
+interface Action {
+  used: boolean;
+  performedBy: string;
+  completed: boolean | string;
+}
+const actions = ['return', 'exchange', 'newReceipt', 'retrieve', 'credit'];
+
+type Actions = {
+  [key in (typeof actions)[number]]: Action;
+};
 export interface SimpleForm {
   customerNumber: number;
   customerDetails: {
@@ -206,33 +216,7 @@ export interface SimpleForm {
   agreements: {
     text: string;
   };
-  actions: {
-    return: {
-      used: boolean;
-      performedBy: string;
-      completed: boolean;
-    };
-    exchange: {
-      used: boolean;
-      performedBy: string;
-      completed: boolean;
-    };
-    newReceipt: {
-      used: boolean;
-      performedBy: string;
-      completed: boolean;
-    };
-    retrieve: {
-      used: boolean;
-      performedBy: string;
-      completed: boolean;
-    };
-    credit: {
-      used: boolean;
-      performedBy: string;
-      completed: boolean;
-    };
-  };
+  actions: Actions;
 }
 
 // const zodReturnFormSchema = z.object({
