@@ -24,4 +24,14 @@ export const PreviewWrapper = styled.div`
     height: 90%;
     background: var(--platinum);
   }
+
+  /* all tables should have outlined cells */
+  & table {
+    border-collapse: collapse;
+    border: 1px solid black;
+
+    & td {
+      border: 1px solid black;
+    }
+  }
 `;

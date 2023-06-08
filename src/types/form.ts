@@ -172,6 +172,68 @@ export function simplifyObjRec(obj: any) {
   }
   return newObj;
 }
+interface Item {
+  articleNumber: number;
+  description: string;
+  unit: string;
+  quantity: number;
+}
+export interface SimpleForm {
+  customerNumber: number;
+  customerDetails: {
+    businessName: string;
+    contact: string;
+  };
+  address: {
+    street: string;
+    postalCode: number;
+  };
+  internal: {
+    handlerFov: string;
+    orderNumber: string;
+    formDate: string;
+  };
+  items: {
+    [key: number]: Item;
+  };
+  reasons: {
+    textReasons: string;
+    inputError: boolean;
+    pickFault: boolean;
+    customerOrderError: boolean;
+    damage: boolean;
+  };
+  agreements: {
+    text: string;
+  };
+  actions: {
+    return: {
+      used: boolean;
+      performedBy: string;
+      completed: boolean;
+    };
+    exchange: {
+      used: boolean;
+      performedBy: string;
+      completed: boolean;
+    };
+    newReceipt: {
+      used: boolean;
+      performedBy: string;
+      completed: boolean;
+    };
+    retrieve: {
+      used: boolean;
+      performedBy: string;
+      completed: boolean;
+    };
+    credit: {
+      used: boolean;
+      performedBy: string;
+      completed: boolean;
+    };
+  };
+}
 
 // const zodReturnFormSchema = z.object({
 //   customerNumber: z.number(),
