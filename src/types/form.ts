@@ -1,12 +1,4 @@
-type InputType =
-  | 'text'
-  | 'number'
-  | 'incremental'
-  | 'checkbox'
-  | 'radio'
-  | 'select'
-  | 'textarea'
-  | 'date';
+type InputType = 'date' | 'number' | 'incremental' | 'text' | 'textarea' | 'checkbox';
 
 type SectionType = 'mix' | 'items' | 'reasons' | 'agreements' | 'actions';
 export const sectionNames = [
@@ -23,7 +15,7 @@ export interface SimpleInput {
   inputType: InputType;
   value: string | number | boolean;
 }
-interface Combination {
+export interface Combination {
   [key: string]: SimpleInput;
 }
 

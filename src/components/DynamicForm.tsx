@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { defaultForm, simplifyObjRec } from '~/types/form';
 import { PreviewWrapper } from './DynamiсForm.styled';
-import type { SimpleForm, SimpleInput } from '~/types/form';
+import type { SimpleForm, SimpleInput, Combination } from '~/types/form';
 import { sectionNames } from '~/types/form';
 
 const simplifiedForm: SimpleForm = simplifyObjRec(defaultForm);
@@ -29,7 +29,14 @@ export default function DynamicForm() {
         </div>
       </PreviewWrapper>
       <PreviewWrapper>
-        <div style={{ width: '50%', border: '1px solid black', justifyContent: 'flex-start' }}>
+        <div
+          style={{
+            width: '50%',
+            border: '1px solid black',
+            justifyContent: 'flex-start',
+            overflowY: 'scroll',
+          }}
+        >
           <h2>Form</h2>
           <DisplayForm form={form} setForm={setForm} />
         </div>
@@ -54,19 +61,43 @@ function DisplayForm({ form, setForm }: { form: SimpleForm; setForm: (form: Simp
         }}
       />
       <h3>Customer Information</h3>
-      {Object.entries(form.customerDetails).map(([key, value]) => {
+      {GenerateSection({ section: 'customerDetails', form, setForm })}
+
+      <h3>Address</h3>
+      {GenerateSection({ section: 'address', form, setForm })}
+      <h3>Internal</h3>
+      {GenerateSection({ section: 'internal', form, setForm })}
+      <h3>Reasons</h3>
+      {GenerateSection({ section: 'reasons', form, setForm })}
+    </>
+  );
+}
+
+function GenerateSection({
+  section,
+  form,
+  setForm,
+}: {
+  section: 'customerDetails' | 'address' | 'internal' | 'reasons';
+  form: SimpleForm;
+  setForm: (form: SimpleForm) => void;
+}) {
+  return (
+    <>
+      {Object.entries(form[section]).map(([key, value]) => {
         return (
           <GenerateInputField
             key={key}
             name={key}
             input={{
-              inputType: defaultForm.customerDetails[key].inputType,
-              value: form.customerDetails[key as keyof typeof form.customerDetails],
+              inputType: defaultForm[section][key].inputType,
+
+              value: value as typeof value,
             }}
             setFunction={(value) => {
               setForm({
                 ...form,
-                customerDetails: { ...form.customerDetails, [key]: value as typeof value },
+                [section]: { ...form[section], [key]: value as typeof value },
               });
             }}
           />
@@ -87,21 +118,26 @@ function GenerateInputField({
 }) {
   const inputType = input.inputType;
   return (
-    <>
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
       <span>{name}</span>
       {/* if  inputType is text / number / incremental*/}
-      {(inputType === 'text' || inputType === 'number' || inputType === 'incremental') && (
-        <input
-          type={inputType === 'incremental' ? 'number' : inputType}
-          value={inputType === 'text' ? (input.value as string) : (input.value as number)}
-          onChange={(e) => {
-            setFunction(e.target.value);
-          }}
-          className={inputType === 'incremental' ? 'input-incremental' : ''}
-        />
-      )}
+      {/* {(inputType === 'text' || inputType === 'number' || inputType === 'incremental') && ( */}
+      <input
+        type={inputType === 'incremental' ? 'number' : inputType}
+        value={
+          inputType === 'incremental' || inputType === 'number'
+            ? (input.value as number)
+            : (input.value as string)
+        }
+        checked={inputType === 'checkbox' ? (input.value as boolean) : undefined}
+        onChange={(e) => {
+          setFunction(e.target[inputType === 'checkbox' ? 'checked' : 'value']);
+        }}
+        className={inputType === 'incremental' ? 'input-incremental' : ''}
+      />
+      {/* )} */}
       {/* if inputType is select */}
-    </>
+    </div>
   );
 }
 
