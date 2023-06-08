@@ -66,6 +66,67 @@ const reasonsSection = reasonNames.reduce((acc, reasonName) => {
   return acc;
 }, {} as ReasonsSection);
 
+// function to take the default obj and for all objects that have value as a key put the value as the value of the key
+// (make it simpler and without inputType)
+
+export function simplifyObjRec(obj: any) {
+  const newObj = { ...obj };
+  for (const key in newObj) {
+    if (typeof obj[key] === 'object' && obj[key].hasOwnProperty('value')) {
+      newObj[key] = obj[key].value;
+    } else if (typeof obj[key] === 'object') {
+      newObj[key] = simplifyObjRec(obj[key]);
+    }
+  }
+  return newObj;
+}
+export interface Item {
+  articleNumber: number;
+  description: string;
+  unit: string;
+  quantity: number;
+}
+interface Action {
+  used: boolean;
+  performedBy: string;
+  completed: boolean | string;
+}
+const actions = ['return', 'exchange', 'newReceipt', 'retrieve', 'credit'];
+
+type Actions = {
+  [key in (typeof actions)[number]]: Action;
+};
+export interface SimpleForm {
+  customerNumber: number;
+  customerDetails: {
+    businessName: string;
+    contact: string;
+  };
+  address: {
+    street: string;
+    postalCode: number;
+  };
+  internal: {
+    handlerFov: string;
+    orderNumber: string;
+    formDate: string;
+  };
+  items: {
+    [key: number]: Item;
+  };
+  reasons: {
+    textReasons: string;
+    inputError: boolean;
+    pickFault: boolean;
+    customerOrderError: boolean;
+    damage: boolean;
+  };
+  agreements: {
+    text: string;
+  };
+  actions: Actions;
+}
+
 export const defaultForm: FinalFormType = {
   customerNumber: {
     inputType: 'number',
@@ -158,67 +219,6 @@ export const defaultForm: FinalFormType = {
   },
   actions: actionsSection,
 };
-
-// function to take the default obj and for all objects that have value as a key put the value as the value of the key
-// (make it simpler and without inputType)
-
-export function simplifyObjRec(obj: any) {
-  const newObj = { ...obj };
-  for (const key in newObj) {
-    if (typeof obj[key] === 'object' && obj[key].hasOwnProperty('value')) {
-      newObj[key] = obj[key].value;
-    } else if (typeof obj[key] === 'object') {
-      newObj[key] = simplifyObjRec(obj[key]);
-    }
-  }
-  return newObj;
-}
-export interface Item {
-  articleNumber: number;
-  description: string;
-  unit: string;
-  quantity: number;
-}
-interface Action {
-  used: boolean;
-  performedBy: string;
-  completed: boolean | string;
-}
-const actions = ['return', 'exchange', 'newReceipt', 'retrieve', 'credit'];
-
-type Actions = {
-  [key in (typeof actions)[number]]: Action;
-};
-export interface SimpleForm {
-  customerNumber: number;
-  customerDetails: {
-    businessName: string;
-    contact: string;
-  };
-  address: {
-    street: string;
-    postalCode: number;
-  };
-  internal: {
-    handlerFov: string;
-    orderNumber: string;
-    formDate: string;
-  };
-  items: {
-    [key: number]: Item;
-  };
-  reasons: {
-    textReasons: string;
-    inputError: boolean;
-    pickFault: boolean;
-    customerOrderError: boolean;
-    damage: boolean;
-  };
-  agreements: {
-    text: string;
-  };
-  actions: Actions;
-}
 
 // const zodReturnFormSchema = z.object({
 //   customerNumber: z.number(),
