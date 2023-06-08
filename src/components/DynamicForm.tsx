@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { defaultForm, simplifyObjRec } from '~/types/form';
 import { PreviewWrapper } from './DynamiсForm.styled';
-import type { SimpleForm } from '~/types/form';
+import type { SimpleForm, SimpleInput } from '~/types/form';
+import { sectionNames } from '~/types/form';
 
 const simplifiedForm: SimpleForm = simplifyObjRec(defaultForm);
 
@@ -24,15 +25,88 @@ export default function DynamicForm() {
         </div>
         <div style={{ alignItems: 'flex-start', width: '40%' }}>
           <h2>Preview</h2>
-          <DisplayForm form={form} />
+          <PreviewForm form={form} />
+        </div>
+      </PreviewWrapper>
+      <PreviewWrapper>
+        <div style={{ width: '50%', border: '1px solid black', justifyContent: 'flex-start' }}>
+          <h2>Form</h2>
+          <DisplayForm form={form} setForm={setForm} />
         </div>
       </PreviewWrapper>
     </>
   );
 }
 
+// use sectionNames to generate form
+function DisplayForm({ form, setForm }: { form: SimpleForm; setForm: (form: SimpleForm) => void }) {
+  return (
+    <>
+      {/* <span>Customer Number:</span> */}
+      <GenerateInputField
+        name="customerNumber"
+        input={{
+          inputType: defaultForm.customerNumber.inputType,
+          value: form.customerNumber,
+        }}
+        setFunction={(value) => {
+          setForm({ ...form, customerNumber: value as typeof form.customerNumber });
+        }}
+      />
+      <h3>Customer Information</h3>
+      {Object.entries(form.customerDetails).map(([key, value]) => {
+        return (
+          <GenerateInputField
+            key={key}
+            name={key}
+            input={{
+              inputType: defaultForm.customerDetails[key].inputType,
+              value: form.customerDetails[key as keyof typeof form.customerDetails],
+            }}
+            setFunction={(value) => {
+              setForm({
+                ...form,
+                customerDetails: { ...form.customerDetails, [key]: value as typeof value },
+              });
+            }}
+          />
+        );
+      })}
+    </>
+  );
+}
+
+function GenerateInputField({
+  name,
+  input,
+  setFunction,
+}: {
+  name: string;
+  input: SimpleInput;
+  setFunction: (value: typeof input.value) => void;
+}) {
+  const inputType = input.inputType;
+  return (
+    <>
+      <span>{name}</span>
+      {/* if  inputType is text / number / incremental*/}
+      {(inputType === 'text' || inputType === 'number' || inputType === 'incremental') && (
+        <input
+          type={inputType === 'incremental' ? 'number' : inputType}
+          value={inputType === 'text' ? (input.value as string) : (input.value as number)}
+          onChange={(e) => {
+            setFunction(e.target.value);
+          }}
+          className={inputType === 'incremental' ? 'input-incremental' : ''}
+        />
+      )}
+      {/* if inputType is select */}
+    </>
+  );
+}
+
 // parse form to JSX
-function DisplayForm({ form }: { form: SimpleForm }) {
+function PreviewForm({ form }: { form: SimpleForm }) {
   return (
     <div
       style={{

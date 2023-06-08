@@ -9,8 +9,17 @@ type InputType =
   | 'date';
 
 type SectionType = 'mix' | 'items' | 'reasons' | 'agreements' | 'actions';
+export const sectionNames = [
+  'customerDetails',
+  'address',
+  'internal',
+  'items',
+  'reasons',
+  'agreements',
+  'actions',
+];
 
-interface SimpleInput {
+export interface SimpleInput {
   inputType: InputType;
   value: string | number | boolean;
 }

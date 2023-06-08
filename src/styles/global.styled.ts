@@ -25,6 +25,13 @@ export const GlobalStyle = createGlobalStyle`
     color: --eerieBlack;
   }
 
+ 
+  input[type='number']:not(.input-incremental)::-webkit-inner-spin-button,
+  input[type='number']:not(.input-incremental)::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   
   main {
     display: flex;
