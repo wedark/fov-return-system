@@ -7,6 +7,7 @@ type InputType =
   | 'select'
   | 'textarea'
   | 'date';
+
 type SectionType = 'mix' | 'items' | 'reasons' | 'agreements' | 'actions';
 
 interface SimpleInput {
@@ -36,8 +37,8 @@ interface FinalFormType {
   address: Combination;
   internal: Combination;
   items: ItemsSection;
-  reason: ReasonsSection;
-  agreementsMade: Combination;
+  reasons: ReasonsSection;
+  agreements: Combination;
   actions: ActionsSection;
 }
 
@@ -64,7 +65,7 @@ const reasonsSection = reasonNames.reduce((acc, reasonName) => {
   return acc;
 }, {} as ReasonsSection);
 
-const defaultForm: FinalFormType = {
+export const defaultForm: FinalFormType = {
   customerNumber: {
     inputType: 'number',
     value: 0,
@@ -122,15 +123,33 @@ const defaultForm: FinalFormType = {
         value: 0,
       },
     },
+    {
+      articleNumber: {
+        inputType: 'number',
+        value: 0,
+      },
+      description: {
+        inputType: 'text',
+        value: '',
+      },
+      unit: {
+        inputType: 'text',
+        value: '',
+      },
+      quantity: {
+        inputType: 'incremental',
+        value: 0,
+      },
+    },
   ],
-  reason: {
+  reasons: {
     textReasons: {
       inputType: 'textarea',
       value: '',
     },
     ...reasonsSection,
   },
-  agreementsMade: {
+  agreements: {
     text: {
       inputType: 'textarea',
       value: '',
@@ -138,3 +157,53 @@ const defaultForm: FinalFormType = {
   },
   actions: actionsSection,
 };
+
+// function to take the default obj and for all objects that have value as a key put the value as the value of the key
+// (make it simpler and without inputType)
+
+export function simplifyObjRec(obj: any) {
+  const newObj = { ...obj };
+  for (const key in newObj) {
+    if (typeof obj[key] === 'object' && obj[key].hasOwnProperty('value')) {
+      newObj[key] = obj[key].value;
+    } else if (typeof obj[key] === 'object') {
+      newObj[key] = simplifyObjRec(obj[key]);
+    }
+  }
+  return newObj;
+}
+
+// const zodReturnFormSchema = z.object({
+//   customerNumber: z.number(),
+//   customerDetails: z.object({
+//     businessName: z.string(),
+//     contact: z.string(),
+//   }),
+//   address: z.object({
+//     street: z.string(),
+//     postalCode: z.string(),
+//   }),
+//   internal: z.object({
+//     handlerFov: z.string(),
+//     orderNumber: z.number(),
+//     formDate: z.date(),
+//   }),
+//   items: z.array(
+//     z.object({
+//       articleNumber: z.number(),
+//       description: z.string(),
+//       unit: z.string(),
+//       quantity: z.number(),
+//     })
+//   ),
+//   reasons: z.object({
+//     textReasons: z.string(),
+//     ...reasonsSection,
+//   }),
+//   agreements: z.object({
+//     text: z.string(),
+//   }),
+//   actions: z.object({
+//     ...actionsSection,
+//   }),
+// });
