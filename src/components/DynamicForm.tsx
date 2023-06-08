@@ -31,7 +31,7 @@ export default function DynamicForm() {
       <PreviewWrapper>
         <div
           style={{
-            width: '50%',
+            width: '70%',
             border: '1px solid black',
             justifyContent: 'flex-start',
             overflowY: 'scroll',
