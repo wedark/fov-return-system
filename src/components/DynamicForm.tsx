@@ -118,7 +118,7 @@ function GenerateInputField({
 }) {
   const inputType = input.inputType;
   return (
-    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '0.5em' }}>
       <span>{name}</span>
       {/* if  inputType is text / number / incremental*/}
       {/* {(inputType === 'text' || inputType === 'number' || inputType === 'incremental') && ( */}
