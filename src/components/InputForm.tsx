@@ -31,47 +31,47 @@ export default function InputForm() {
     </>
   );
 }
-function DisplayForm(form: ReturnForm, setForm: (form: ReturnForm) => void) {
-  // const returnForm = {} as ReturnForm;
-  const sections = typeSafeObjectKeys(form);
+// function DisplayForm(form: ReturnForm, setForm: (form: ReturnForm) => void) {
+//   // const returnForm = {} as ReturnForm;
+//   const sections = typeSafeObjectKeys(form);
 
-  return sections.map((section) => {
-    // console.log('section', section);
-    const fields = typeSafeObjectKeys(form[section]);
+//   return sections.map((section) => {
+//     // console.log('section', section);
+//     const fields = typeSafeObjectKeys(form[section]);
 
-    return (
-      <div key={section}>
-        <h1>{section}</h1>
-        <div style={{ display: 'grid', width: '40em' }}>
-          {fields.map((field) => {
-            // console.log('field', field);
-            const fieldType = typeof form[section][field];
-            return (
-              <>
-                <span key={field}>
-                  {field} : {fieldType}
-                </span>
-                {(fieldType === 'string' || fieldType === 'number') && (
-                  <input
-                    type={fieldType}
-                    key={field}
-                    value={form[section][field] as typeof fieldType}
-                    onChange={(e) => {
-                      setForm({
-                        ...form,
-                        [section]: { ...form[section], [field]: e.target.value },
-                      });
-                    }}
-                  />
-                )}
-              </>
-            );
-          })}
-        </div>
-      </div>
-    );
-  });
-}
+//     return (
+//       <div key={section}>
+//         <h1>{section}</h1>
+//         <div style={{ display: 'grid', width: '40em' }}>
+//           {fields.map((field) => {
+//             // console.log('field', field);
+//             const fieldType = typeof form[section][field];
+//             return (
+//               <>
+//                 <span key={field}>
+//                   {field} : {fieldType}
+//                 </span>
+//                 {(fieldType === 'string' || fieldType === 'number') && (
+//                   <input
+//                     type={fieldType}
+//                     key={field}
+//                     value={form[section][field] as typeof fieldType}
+//                     onChange={(e) => {
+//                       setForm({
+//                         ...form,
+//                         [section]: { ...form[section], [field]: e.target.value },
+//                       });
+//                     }}
+//                   />
+//                 )}
+//               </>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     );
+//   });
+// }
 
 function typeSafeObjectKeys<T extends object>(obj: T) {
   return Object.keys(obj) as (keyof T)[];
@@ -101,7 +101,9 @@ function ParseZodFormSchemaIntoJsx(
     //   console.log('fieldType', fieldType);
     //   console.log(schema.shape[field]);
     // }
-
+      // const isSection = fieldType === 'object';
+      // console.log('section', section);
+      // console.log('field', field);
     return (
       <Fragment key={field}>
         <span>
@@ -111,16 +113,18 @@ function ParseZodFormSchemaIntoJsx(
           <input
             type={fieldType}
             value={
-              section === undefined
-                ? form[field as keyof typeof form]
-                : form[section as keyof typeof form][field]
+              section === undefined 
+                ? form[field as keyof typeof form] : '' as any
+                // : form[section as keyof typeof form][field as keyof typeof form[section]]
             }
             onChange={(e) => {
               if (section === undefined) return;
 
               setForm({
                 ...form,
-                [section]: { ...form[section as keyof typeof form], [field]: e.target.value },
+                [section]: isObject ? { ...(form[section as keyof typeof form] as object), [field]: e.target.value } : e.target.value,
+
+                //  { ...form[section as keyof typeof form], [field]: e.target.value },
               });
             }}
           />

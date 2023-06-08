@@ -2,36 +2,60 @@ import { ZodType } from 'zod/lib';
 import { z } from '../lib/wrappedZod';
 
 const defaultReturnForm: ReturnForm = {
-  // customerNumber: 0,
+  customerNumber: 0,
   customerData: {
     businessName: '',
+    contact: '',
+  },
 
+  address: {
     street: '',
     postalCode: 0, // Postal code
+  },
 
+  internal: {
     handlerFov: '',
     orderNumber: '',
-    requestDate: '',
+    formDate: '',
   },
+
+  // reasonForReturnData: {
+
+  // },
+  // agreementsMadeData: {},
+  // actionsData: {},
 };
 
 export default defaultReturnForm;
 
-type BaseReturnForm = typeof defaultReturnForm;
+export type BaseReturnForm = typeof defaultReturnForm;
 
 export type ReturnForm = {
   // Main sections
-  // customerNumber: number;
+  customerNumber: number;
   customerData: CustomerData;
+  address: Address;
+  internal: InternalData;
+  // reasonForReturnData: ReasonForReturnData;
+  // agreementsMadeData: AgreementsMadeData;
+  // actionsData: ActionsData;
+
 };
 
 interface CustomerData {
   businessName: string;
+  contact: string;
+}
+interface Address 
+{
   street: string;
   postalCode: number;
+}
+
+interface InternalData {
   handlerFov: string;
   orderNumber: string;
-  requestDate: string;
+  formDate: string;
 }
 
 interface ReasonForReturnData {}
