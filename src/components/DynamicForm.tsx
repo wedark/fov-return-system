@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { defaultForm, simplifyObjRec } from '~/types/form';
 import { PreviewWrapper } from './DynamiсForm.styled';
-import type { SimpleForm, SimpleInput, Combination } from '~/types/form';
+import type { SimpleForm, SimpleInput, Combination, Item } from '~/types/form';
 import { sectionNames } from '~/types/form';
 
 const simplifiedForm: SimpleForm = simplifyObjRec(defaultForm);
@@ -63,6 +63,9 @@ function DisplayForm({ form, setForm }: { form: SimpleForm; setForm: (form: Simp
       <h3>Customer Information</h3>
       {GenerateSection({ section: 'customerDetails', form, setForm })}
 
+      <h3>Items</h3>
+      {DisplayItems({ items: form.items, form, setForm })}
+
       <h3>Address</h3>
       {GenerateSection({ section: 'address', form, setForm })}
       <h3>Internal</h3>
@@ -70,6 +73,83 @@ function DisplayForm({ form, setForm }: { form: SimpleForm; setForm: (form: Simp
       <h3>Reasons</h3>
       {GenerateSection({ section: 'reasons', form, setForm })}
     </>
+  );
+}
+// Item = {
+// articleNumber: number;
+//   description: string;
+//   unit: string;
+//   quantity: number;
+// }
+function DisplayItems({
+  items,
+  form,
+  setForm,
+}: {
+  items: { [key: number]: Item };
+  form: SimpleForm;
+  setForm: (form: SimpleForm) => void;
+}) {
+  return (
+    <table>
+      <tbody>
+        <tr>
+          {Object.entries(items[0]).map(([key, value]) => {
+            return <td key={key}>{key}</td>;
+          })}
+        </tr>
+        {Object.entries(items).map(([numKey, item]) => {
+          return (
+            <tr key={numKey}>
+              {Object.entries(item).map(([key, value]) => {
+                return (
+                  <td key={key}>
+                    <input
+                      type={defaultForm.items[0][key].inputType}
+                      value={value as typeof value}
+                      onChange={(e) => {
+                        setForm({
+                          ...form,
+                          items: {
+                            ...form.items,
+                            [numKey]: {
+                              ...form.items[Number(numKey)],
+                              [key]: e.target.value as typeof value,
+                            },
+                          },
+                        });
+                      }}
+                    />
+                  </td>
+                );
+              })}
+            </tr>
+          );
+        })}
+        <tr>
+          {/* add new item */}
+
+          <button
+            onClick={() => {
+              setForm({
+                ...form,
+                items: {
+                  ...form.items,
+                  [Object.keys(form.items).length]: {
+                    articleNumber: 0,
+                    description: '',
+                    unit: '',
+                    quantity: 0,
+                  },
+                },
+              });
+            }}
+          >
+            Add item
+          </button>
+        </tr>
+      </tbody>
+    </table>
   );
 }
 

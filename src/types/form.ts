@@ -173,7 +173,7 @@ export function simplifyObjRec(obj: any) {
   }
   return newObj;
 }
-interface Item {
+export interface Item {
   articleNumber: number;
   description: string;
   unit: string;
