@@ -15,7 +15,7 @@ export const PreviewWrapper = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 40%;
+    width: 30%;
     height: 100%;
   }
 
