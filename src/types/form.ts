@@ -163,7 +163,7 @@ export const defaultForm: FinalFormType = {
     },
     formDate: {
       inputType: 'date',
-      value: '',
+      value: new Date().toISOString().slice(0, 10),
     },
   },
   items: [
