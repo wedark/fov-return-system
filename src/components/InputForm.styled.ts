@@ -52,7 +52,7 @@ const paperStyle = css`
   aspect-ratio: ${aspectRatios.a4};
   overflow: scroll;
   border: 1px solid black;
-  padding: 1rem;
+  padding: 1.5rem;
   position: relative;
 
   hr {
@@ -69,8 +69,8 @@ const paperStyle = css`
       position: absolute;
       font-size: 3rem;
       font-weight: 200;
-      top: 0.4rem;
-      right: 0.75rem;
+      top: 1rem;
+      right: 1.5rem;
     }
   }
   h3 {
@@ -137,7 +137,7 @@ export const SpanValueStyle = styled.span<{ size?: number; inline?: string }>`
 export const ItemTableStyled = styled.table`
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin-bottom: 0.5rem;
 
   th {

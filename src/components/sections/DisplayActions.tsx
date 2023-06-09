@@ -53,8 +53,8 @@ export default function DisplayActions({
             <GenerateInputField
               name="Completed"
               input={{
-                inputType: 'text',
-                value: value.completed as string,
+                inputType: 'date',
+                value: String(value.completed),
               }}
               setFunction={(value) => {
                 setForm({

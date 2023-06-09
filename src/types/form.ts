@@ -25,7 +25,7 @@ type ReasonsSection = Combination;
 interface Action {
   used: boolean;
   performedBy: string;
-  completed: string | boolean;
+  completed: Date | boolean;
 }
 
 interface ActionsSection {
@@ -86,11 +86,11 @@ export interface Item {
   unit: string;
   quantity: number;
 }
-interface Action {
-  used: boolean;
-  performedBy: string;
-  completed: boolean | string;
-}
+// interface Action {
+//   used: boolean;
+//   performedBy: string;
+//   completed: Date | string;
+// }
 const actions = ['return', 'exchange', 'newReceipt', 'retrieve', 'credit'];
 
 export type Actions = {

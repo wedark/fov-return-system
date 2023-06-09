@@ -106,7 +106,7 @@ export default function PreviewForm({ form }: { form: SimpleForm }) {
             .slice(1)
             .map(([key, value]) => (
               <label key={key} style={{ flexWrap: 'nowrap' }}>
-                <input type="checkbox" checked={value as boolean} disabled />
+                <input type="checkbox" checked={value as boolean} readOnly />
                 {/* {key}: {value ? 'Yes' : 'No'} */}
                 {key}
               </label>
@@ -125,7 +125,59 @@ export default function PreviewForm({ form }: { form: SimpleForm }) {
       />
       {/* <span>Notes: {form.agreements.text}</span> */}
       <h3>Actions</h3>
-      {Object.entries(form.actions).map(([key, action]) => (
+      <ItemTableStyled>
+        <thead>
+          <tr>
+            <th
+              style={{
+                border: 'none',
+              }}
+            ></th>
+            <th>Performed by</th>
+            <th>Completed (date)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(form.actions).map(([key, action]) => (
+            <tr key={key} style={{ width: 'auto' }}>
+              <td
+                style={{
+                  border: 'none',
+                  fontSize: '1.1rem',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  paddingLeft: '0px',
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={action.used}
+                  readOnly
+                  style={{
+                    marginRight: '10px',
+                  }}
+                />
+                {key}
+              </td>
+              <td
+                style={{
+                  width: '45%',
+                }}
+              >
+                {action.performedBy}
+              </td>
+              <td
+                style={{
+                  width: '30%',
+                }}
+              >
+                {action.completed ? String(action.completed) : ''}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </ItemTableStyled>
+      {/* {Object.entries(form.actions).map(([key, action]) => (
         <div key={key}>
           <span>{key}</span>
           <input type="checkbox" checked={action.used} readOnly />
@@ -142,7 +194,7 @@ export default function PreviewForm({ form }: { form: SimpleForm }) {
             </tbody>
           </table>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

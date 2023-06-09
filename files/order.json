@@ -31,8 +31,29 @@
   "agreements": {
     "text": "UN: 1263, Vos 463, B: 113"
   },
+
   "actions": {
     "return": {
+      "used": true,
+      "performedBy": "",
+      "completed": false
+    },
+    "exchange": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "newReceipt": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "retrieve": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "credit": {
       "used": false,
       "performedBy": "",
       "completed": false
