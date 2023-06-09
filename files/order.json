@@ -1,58 +1,38 @@
 {
-  "customerNumber": 12005921,
+  "customerNumber": 123,
   "customerDetails": {
-    "businessName": "ABC Company",
-    "contact": "John Doe"
+    "businessName": "Tesla",
+    "contact": "Elon Tusk"
   },
   "address": {
-    "street": "123 Main St",
-    "postalCode": "1234AB"
+    "street": "Texas, street of hot dogs",
+    "postalCode": 124817
   },
   "internal": {
-    "handlerFov": "John Doe",
-    "orderNumber": 576560,
-    "formDate": "2020-01-01"
+    "handlerFov": "Symen",
+    "orderNumber": "576560",
+    "formDate": "25-05-2030"
   },
   "items": [
     {
-      "articleNumber": 123456,
-      "description": "Product 1",
-      "unit": "pcs",
-      "quantity": 1
+      "articleNumber": 12322210000000345,
+      "description": "Water",
+      "unit": "5ltr",
+      "quantity": 2
     }
   ],
-  "reason": {
-    "textReasons": "Reason for return",
+  "reasons": {
+    "textReasons": "Wrong color",
     "inputError": false,
-    "pickFault": false,
+    "pickFault": true,
     "customerOrderError": false,
-    "demage": false
+    "damage": false
   },
-  "agreementsMade": "Agreements made",
-
+  "agreements": {
+    "text": "UN: 1263, Vos 463, B: 113"
+  },
   "actions": {
     "return": {
-      "used": true,
-      "performedBy": "John Doe",
-      "completed": false
-    },
-    "exchange": {
-      "used": false,
-      "performedBy": "",
-      "completed": false
-    },
-    "newReceipt": {
-      "used": false,
-      "performedBy": "",
-      "completed": false
-    },
-    "retrieve": {
-      "used": false,
-      "performedBy": "",
-      "completed": false
-    },
-
-    "credit": {
       "used": false,
       "performedBy": "",
       "completed": false

@@ -93,7 +93,7 @@ interface Action {
 }
 const actions = ['return', 'exchange', 'newReceipt', 'retrieve', 'credit'];
 
-type Actions = {
+export type Actions = {
   [key in (typeof actions)[number]]: Action;
 };
 export interface SimpleForm {
