@@ -55,7 +55,7 @@ const actionsSection = actionNames.reduce((acc, actionName) => {
   return acc;
 }, {} as ActionsSection);
 
-const reasonNames = ['inputError', 'pickFault', 'customerOrderError', 'damage'];
+const reasonNames = ['inputError', 'pickFault', 'customerError', 'damage'];
 
 // auto-generate the reasons section
 const reasonsSection = reasonNames.reduce((acc, reasonName) => {
@@ -118,7 +118,7 @@ export interface SimpleForm {
     textReasons: string;
     inputError: boolean;
     pickFault: boolean;
-    customerOrderError: boolean;
+    customerError: boolean;
     damage: boolean;
   };
   agreements: {

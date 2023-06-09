@@ -1,12 +1,13 @@
 import { RuleSet, css } from 'styled-components';
 
-import { appearAsMediaPrint } from '~/config/print';
+import { settings } from '~/config/print';
 
 export function mediaPrintWithConfig(style: RuleSet) {
+  // console.log('setting in mediaPrintWithConfig', settings.appearAsMediaPrint);
   return css`
     @media print {
       ${style}
     }
-    ${appearAsMediaPrint && style}
+    ${settings.appearAsMediaPrint && style}
   `;
 }

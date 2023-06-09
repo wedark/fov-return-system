@@ -25,7 +25,7 @@ export const formDataExample = {
     textReasons: 'Reason for return',
     inputError: false,
     pickFault: false,
-    customerOrderError: false,
+    customerError: false,
     demage: false,
   },
   agreementsMade: 'Agreements made',

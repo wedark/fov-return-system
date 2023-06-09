@@ -10,16 +10,66 @@ import {
   FormEditorHeading,
   InputFormWrapper,
   PreviewWrapper,
+  PrintModeSwitch,
 } from './InputForm.styled';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-export default function InputForm({ simplifiedForm }: { simplifiedForm: SimpleForm }) {
+export default function InputForm({
+  simplifiedForm,
+  action,
+}: {
+  simplifiedForm: SimpleForm;
+  action: 'new' | 'edit';
+}) {
   const [form, setForm] = useState<SimpleForm>(simplifiedForm);
 
   // get form from manager
 
   // generate form to display
+
+  const router = useRouter();
+  // const action =
+
   return (
     <>
+      {process.env.NODE_ENV === 'development' && (
+        <PrintModeSwitch
+          type="button"
+          onClick={() => {
+            const currentPrint = localStorage.getItem('print');
+            const currentPrintAsBoolean = currentPrint ? currentPrint === 'true' : false;
+            localStorage.setItem('print', String(!currentPrintAsBoolean));
+            location.reload();
+          }}
+        >
+          Switch print mode
+        </PrintModeSwitch>
+      )}
+      {/* <Link
+        href="/overview"
+        style={{
+          position: 'absolute',
+          top: '1rem',
+          left: '1rem',
+        }}
+        onClick={(e) => {
+          // check if the form has been changed
+          // if so, ask if the user wants to save
+          // if not, just go to the overview
+          e.preventDefault();
+          if (confirm('Do you want to save the form?')) {
+            fetch('/manager', { method: 'POST', body: JSON.stringify(form) }).then((res) => {
+              console.log(res);
+              router.push('/overview');
+            });
+          } else {
+            router.push('/overview');
+          }
+        }}
+      >
+        Overview
+      </Link> */}
       <FormEditorHeading>Form Editor</FormEditorHeading>
       <InputFormWrapper>
         {/* <div>
@@ -33,22 +83,31 @@ export default function InputForm({ simplifiedForm }: { simplifiedForm: SimpleFo
 
         <FormEditWrapper>
           <h2>Form Editor</h2>
-          <DynamicForm form={form} setForm={setForm} />
+          <DynamicForm form={form} setForm={setForm} action={action} />
         </FormEditWrapper>
         <PreviewWrapper>
           <h2>Preview</h2>
           <PreviewForm form={form} />
-        </PreviewWrapper>
-        {/* <h1>Creating a new file</h1>
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
+          <button
+            onClick={() => {
+              // console.log(location.pathname.split('/')[1]);
 
-          await fetch('/manager', { method: 'POST', body: JSON.stringify(form) });
-        }}
-      >
-        <button type="submit">Save</button>
-      </form> */}
+              fetch(`/manager/${action}`, {
+                method: 'POST',
+                body: JSON.stringify(form),
+              }).then((res) => {
+                console.log(res);
+                if (res.ok) {
+                  router.push('/overview');
+                } else {
+                  alert(res.statusText);
+                }
+              });
+            }}
+          >
+            Save
+          </button>
+        </PreviewWrapper>
       </InputFormWrapper>
     </>
   );

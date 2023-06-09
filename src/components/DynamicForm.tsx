@@ -12,27 +12,42 @@ import GenerateSection from './sections/GenerateSection';
 export default function DynamicForm({
   form,
   setForm,
+  action,
 }: {
   form: SimpleForm;
   setForm: (form: SimpleForm) => void;
+  action: string;
 }) {
-  return <DisplayForm form={form} setForm={setForm} />;
+  return <DisplayForm form={form} setForm={setForm} action={action} />;
 }
 
 // use sectionNames to generate form
-function DisplayForm({ form, setForm }: { form: SimpleForm; setForm: (form: SimpleForm) => void }) {
+function DisplayForm({
+  form,
+  setForm,
+  action,
+}: {
+  form: SimpleForm;
+  setForm: (form: SimpleForm) => void;
+  action: string;
+}) {
   return (
     <div>
-      <GenerateInputField
-        name="customerNumber"
-        input={{
-          inputType: defaultForm.customerNumber.inputType,
-          value: form.customerNumber,
-        }}
-        setFunction={(value) => {
-          setForm({ ...form, customerNumber: value as typeof form.customerNumber });
-        }}
-      />
+      {action === 'new' ? (
+        <GenerateInputField
+          name="customerNumber"
+          input={{
+            inputType: defaultForm.customerNumber.inputType,
+            value: form.customerNumber,
+          }}
+          setFunction={(value) => {
+            setForm({ ...form, customerNumber: value as typeof form.customerNumber });
+          }}
+        />
+      ) : (
+        <span>Customer Number: {form.customerNumber}</span>
+      )}
+
       <h3>Customer Information</h3>
       {GenerateSection({ section: 'customerDetails', form, setForm })}
 

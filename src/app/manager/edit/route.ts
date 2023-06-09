@@ -6,9 +6,13 @@ import path from 'path';
 import type { formDataExample } from '~/types/exampleJSON';
 import { NextApiResponse } from 'next';
 
-// NEW
+// EDIT
 export async function POST(request: Request) {
   console.log(request);
+  // const url = new URL(request.url).href;
+  // get action and file params from GET params of the url
+
+  // console.log('🚀 ~ file: route.ts:9 ~ GET ~ HUI:', url);
 
   const currentPath = process.cwd();
 
@@ -16,24 +20,28 @@ export async function POST(request: Request) {
   const bodyJson = (await request.json()) as unknown as typeof formDataExample;
   const customerNumber = bodyJson.customerNumber;
 
-  const pathToNewFile = path.join(currentPath, `./files/${customerNumber}.json`);
+  // search that file exists
+  const incomingPathToFile = path.join(currentPath, `./files/${customerNumber}.json`);
 
-  const fileExists = existsSync(pathToNewFile);
-
-  if (fileExists) {
-    return new Response(undefined, {
-      status: 409,
-      statusText: 'Conflict: File already exists | use edit NOT new',
-    });
-  }
-
-  // console.log(bodyJson);
+  const fileExists = existsSync(incomingPathToFile);
 
   // console.log('🚀 ~ file: route.ts:9 ~ GET ~ currentPath:', currentPath);
 
+  if (!fileExists) {
+    // console.log('🚀 ~ file: route.ts:9 ~ GET ~ fileExists:', fileExists);
+    return new Response(undefined, {
+      status: 404,
+      // error description
+      statusText: 'File does not exist | use new file NOT edit',
+
+      // headers: { 'Set-Cookie': `token=${token}` },
+    });
+  }
+
+  // const pathToNewFile = path.join(currentPath, `./files/${bodyJson.customerNumber}.json`);
   // console.log('🚀 ~ file: route.ts:9 ~ GET ~ pathToNewFile:', pathToNewFile);
 
-  await writeFile(pathToNewFile, JSON.stringify(bodyJson, undefined, 2), {
+  await writeFile(incomingPathToFile, JSON.stringify(bodyJson, undefined, 2), {
     encoding: 'utf-8',
   });
 

@@ -7,13 +7,13 @@ import {
   ReasonWrapper,
   SpanValueStyle,
 } from './InputForm.styled';
+import { toCapitalizedWords } from '~/utils/toCapitalizedWords';
 
 export default function PreviewForm({ form }: { form: SimpleForm }) {
   return (
     <div>
       <h1>Retour Afhaalopdracht</h1>
       <h1 className="logo">FOV</h1>
-      {/* html line tag */}
       <hr
         style={{
           borderWidth: '1px',
@@ -96,19 +96,14 @@ export default function PreviewForm({ form }: { form: SimpleForm }) {
         <div>
           <PreviewTextarea name="" id="" value={form.reasons.textReasons} disabled />
         </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-          }}
-        >
+        <div>
           {Object.entries(form.reasons)
             .slice(1)
             .map(([key, value]) => (
-              <label key={key} style={{ flexWrap: 'nowrap' }}>
+              <label key={key}>
                 <input type="checkbox" checked={value as boolean} readOnly />
-                {/* {key}: {value ? 'Yes' : 'No'} */}
-                {key}
+
+                {toCapitalizedWords(key)}
               </label>
             ))}
         </div>
@@ -128,12 +123,8 @@ export default function PreviewForm({ form }: { form: SimpleForm }) {
       <h3>Actions</h3>
       <ItemTableStyled>
         <thead>
-          <tr>
-            <th
-              style={{
-                border: 'none',
-              }}
-            ></th>
+          <tr className="no-border">
+            <th></th>
             <th>Performed by</th>
             <th>Completed (date)</th>
           </tr>
@@ -158,7 +149,8 @@ export default function PreviewForm({ form }: { form: SimpleForm }) {
                     marginRight: '10px',
                   }}
                 />
-                {key}
+
+                {toCapitalizedWords(key)}
               </td>
               <td
                 style={{

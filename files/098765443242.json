@@ -1,40 +1,45 @@
 {
-  "customerNumber": 123,
+  "customerNumber": "098765443242",
   "customerDetails": {
-    "businessName": "Tesla",
-    "contact": "Elon Tusk"
+    "businessName": "СЩьзфвы",
+    "contact": ""
   },
   "address": {
-    "street": "Texas, street of hot dogs",
-    "postalCode": 124817
+    "street": "",
+    "postalCode": 0
   },
   "internal": {
-    "handlerFov": "Symen",
-    "orderNumber": "576560",
-    "formDate": "25-05-2030"
+    "handlerFov": "",
+    "orderNumber": "",
+    "formDate": "2023-06-09"
   },
-  "items": [
-    {
-      "articleNumber": 12322210000000345,
-      "description": "Water",
-      "unit": "5ltr",
-      "quantity": 2
+  "items": {
+    "0": {
+      "articleNumber": 0,
+      "description": "",
+      "unit": "",
+      "quantity": 0
+    },
+    "1": {
+      "articleNumber": 0,
+      "description": "",
+      "unit": "",
+      "quantity": 0
     }
-  ],
+  },
   "reasons": {
-    "textReasons": "Wrong color",
+    "textReasons": "",
     "inputError": false,
-    "pickFault": true,
-    "customerOrderError": false,
+    "pickFault": false,
+    "customerError": false,
     "damage": false
   },
   "agreements": {
-    "text": "UN: 1263, Vos 463, B: 113"
+    "text": ""
   },
-
   "actions": {
     "return": {
-      "used": true,
+      "used": false,
       "performedBy": "",
       "completed": false
     },

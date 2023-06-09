@@ -39,15 +39,13 @@ export type ReturnForm = {
   // reasonForReturnData: ReasonForReturnData;
   // agreementsMadeData: AgreementsMadeData;
   // actionsData: ActionsData;
-
 };
 
 interface CustomerData {
   businessName: string;
   contact: string;
 }
-interface Address 
-{
+interface Address {
   street: string;
   postalCode: number;
 }
@@ -223,7 +221,7 @@ export const zodReturnFormSchema = z.object({
     textReasons: z.string({ description: 'SOME REASON' }),
     inputError: z.boolean(),
     pickFault: z.boolean(),
-    customerOrderError: z.boolean(),
+    customerError: z.boolean(),
     damage: z.boolean(),
   }),
   agreementsMade: z.string(), // textarea

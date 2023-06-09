@@ -38,6 +38,8 @@ export const InputFormWrapper = styled.div`
 const sharedWrapperStyle = css`
   & > div {
     width: 98%;
+    box-sizing: border-box;
+    border: 1px solid black;
     margin-top: 1rem;
     /* outline: 1px solid black; */
     ${mediaPrintWithConfig(css`
@@ -50,7 +52,6 @@ const sharedWrapperStyle = css`
 export const FormEditWrapper = styled.div`
   padding-right: 1.5em;
   border-right: 1px solid black;
-  outline: 1px solid black;
 
   ${sharedWrapperStyle}
 
@@ -64,11 +65,10 @@ const aspectRatios = {
 };
 
 const paperStyle = css`
-  box-sizing: border-box;
   /* background-color: yellow; */
   aspect-ratio: ${aspectRatios.a4};
   overflow: scroll;
-  border: 1px solid black;
+
   padding: 1.5rem;
   position: relative;
 
@@ -93,6 +93,29 @@ const paperStyle = css`
   h3 {
     margin: 1rem 0 0.5rem 0;
   }
+`;
+
+export const PreviewWrapper = styled.div`
+  padding-left: 1.5em;
+  border-left: 1px solid black;
+  ${mediaPrintWithConfig(css`
+    border-left: none;
+    padding-left: 0;
+
+    display: contents;
+  `)}
+
+  ${sharedWrapperStyle}
+
+  & > div {
+    ${paperStyle}
+  }
+
+  ${mediaPrintWithConfig(css`
+    & > h2 {
+      display: none;
+    }
+  `)}
 `;
 export const CustomerDetailsWrapper = styled.div`
   display: flex;
@@ -120,15 +143,34 @@ export const PreviewTextarea = styled.textarea`
   box-sizing: border-box;
   padding: 0.25rem;
   resize: none;
+  background: none;
   outline: none;
-  border: 1px solid black;
   font-size: 0.9rem;
+
+  width: 100%;
 `;
 
 export const ReasonWrapper = styled(CustomerDetailsWrapper)`
   & > div {
     border: none !important;
+
+    & > label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+    }
   }
+
+  & > div:last-child {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    column-gap: 2rem;
+  }
+
   textarea {
     width: 94%;
 
@@ -147,15 +189,27 @@ export const SpanValueStyle = styled.span<{ size?: number; inline?: string }>`
   font-size: ${({ size = 1 }) => size}rem;
 
   & > span {
-    text-decoration: underline;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    /* text-decoration: underline; */
     color: #404040;
+    ${mediaPrintWithConfig(css`
+      border-color: #a9a9a9;
+    `)}
   }
 `;
+
 export const ItemTableStyled = styled.table`
   width: 100%;
   border-collapse: collapse;
   /* border: 1px solid black; */
   margin-bottom: 0.5rem;
+
+  /* tr with class no-border */
+  & > tbody > tr.no-border > td,
+  & > thead > tr.no-border > th {
+    border: none;
+  }
 
   th {
     text-align: left;
@@ -178,34 +232,17 @@ export const InternalDetailsTable = styled.div`
   }
 `;
 
-export const PreviewWrapper = styled.div`
-  padding-left: 1.5em;
-  border-left: 1px solid black;
-  ${mediaPrintWithConfig(css`
-    border-left: none;
-    padding-left: 0;
-
-    display: contents;
-  `)}
-
-  ${sharedWrapperStyle}
-
-  & > div {
-    ${paperStyle}
-  }
-
-  ${mediaPrintWithConfig(css`
-    & > h2 {
-      display: none;
-    }
-  `)}
-`;
-
 export const FormEditorHeading = styled.h1`
   margin: 0;
   text-align: center;
   margin-top: 1rem;
 
+  ${mediaPrintWithConfig(css`
+    display: none;
+  `)}
+`;
+
+export const PrintModeSwitch = styled.button`
   ${mediaPrintWithConfig(css`
     display: none;
   `)}

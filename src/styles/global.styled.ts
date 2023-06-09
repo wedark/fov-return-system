@@ -19,10 +19,10 @@ export const GlobalStyle = createGlobalStyle`${css`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'montserrat', sans-serif;
-    background: --platinum;
+    background: white;
+    color: var(--eerieBlack);
 
-    color: --eerieBlack;
+    /* font-family: 'Inter', sans-serif; */
   }
 
   input[type='number']:not(.input-incremental) {
