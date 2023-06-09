@@ -120,6 +120,7 @@ export default function PreviewForm({ form }: { form: SimpleForm }) {
         value={form.agreements.text}
         disabled
         style={{
+          height: '4.5em',
           width: '100%',
         }}
       />
