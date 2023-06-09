@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { mediaPrintWithConfig } from '~/utils/mediaPrintWithConfig';
 
 export const InputFormWrapper = styled.div`
   width: 95vw;
@@ -20,10 +21,18 @@ export const InputFormWrapper = styled.div`
     align-items: center;
     overflow-y: scroll;
 
+    ${mediaPrintWithConfig(css`
+      width: auto;
+    `)}
+
     h2 {
       margin: 0;
     }
   }
+
+  ${mediaPrintWithConfig(css`
+    display: contents;
+  `)}
 `;
 
 const sharedWrapperStyle = css`
@@ -31,6 +40,10 @@ const sharedWrapperStyle = css`
     width: 98%;
     margin-top: 1rem;
     /* outline: 1px solid black; */
+    ${mediaPrintWithConfig(css`
+      width: 100%;
+      margin-top: 0;
+    `)}
   }
 `;
 
@@ -40,6 +53,10 @@ export const FormEditWrapper = styled.div`
   outline: 1px solid black;
 
   ${sharedWrapperStyle}
+
+  ${mediaPrintWithConfig(css`
+    display: none !important;
+  `)}
 `;
 
 const aspectRatios = {
@@ -164,16 +181,32 @@ export const InternalDetailsTable = styled.div`
 export const PreviewWrapper = styled.div`
   padding-left: 1.5em;
   border-left: 1px solid black;
+  ${mediaPrintWithConfig(css`
+    border-left: none;
+    padding-left: 0;
+
+    display: contents;
+  `)}
 
   ${sharedWrapperStyle}
 
   & > div {
     ${paperStyle}
   }
+
+  ${mediaPrintWithConfig(css`
+    & > h2 {
+      display: none;
+    }
+  `)}
 `;
 
 export const FormEditorHeading = styled.h1`
   margin: 0;
   text-align: center;
   margin-top: 1rem;
+
+  ${mediaPrintWithConfig(css`
+    display: none;
+  `)}
 `;
