@@ -1,18 +1,18 @@
 'use client';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`${css`
   * {
     font-weight: 200;
   }
 
-// root colors
+  // root colors
   :root {
-    --timberwolf: #CED0CE;
+    --timberwolf: #ced0ce;
     --eerieBlack: #191919;
-    --platinum: #E6E8E6;
-    --coquelicot: #F15025;
-    --green: #8BF125;
+    --platinum: #e6e8e6;
+    --coquelicot: #f15025;
+    --green: #8bf125;
     --myGreen: #a4de02;
   }
 
@@ -21,22 +21,22 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'montserrat', sans-serif;
     background: --platinum;
-    
+
     color: --eerieBlack;
   }
 
- 
-  input[type='number']:not(.input-incremental)::-webkit-inner-spin-button,
-  input[type='number']:not(.input-incremental)::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  input[type='number']:not(.input-incremental) {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 
-  
   main {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
-`;
+`}`;
