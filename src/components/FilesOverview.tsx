@@ -46,7 +46,7 @@ export default function FilesOverview() {
                   <button
                     onClick={() => {
                       // console.log('delete', '${formJsonFile.filename}');
-                      fetch(`/manager/new?filename=${formJsonFile.filename}`, {
+                      fetch(`/manager/delete?filename=${formJsonFile.filename}`, {
                         body: JSON.stringify({ filename: formJsonFile.filename }),
                         method: 'DELETE',
                       });

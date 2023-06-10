@@ -1,7 +1,7 @@
 {
   "customerNumber": "123456789123456",
   "customerDetails": {
-    "businessName": "Company",
+    "businessName": "Company ererre",
     "contact": "adre"
   },
   "address": {
@@ -49,8 +49,8 @@
       "completed": "2023-06-10"
     },
     "newReceipt": {
-      "used": false,
-      "performedBy": "",
+      "used": true,
+      "performedBy": "r",
       "completed": false
     },
     "retrieve": {
@@ -85,6 +85,12 @@
         "description": "some test",
         "unit": "5ltr",
         "quantity": "4"
+      },
+      "1": {
+        "articleNumber": "3443234323",
+        "description": "dd",
+        "unit": "d",
+        "quantity": "100"
       }
     },
     "reasons": {
@@ -104,9 +110,9 @@
         "completed": "2023-06-17"
       },
       "exchange": {
-        "used": false,
-        "performedBy": "",
-        "completed": false
+        "used": true,
+        "performedBy": "mm",
+        "completed": "2023-06-10"
       },
       "newReceipt": {
         "used": false,
@@ -122,6 +128,67 @@
         "used": false,
         "performedBy": "",
         "completed": false
+      }
+    },
+    "default": {
+      "customerNumber": "123456789123456",
+      "customerDetails": {
+        "businessName": "Company",
+        "contact": "adre"
+      },
+      "address": {
+        "street": "some street 14",
+        "postalCode": "1234AB"
+      },
+      "internal": {
+        "handlerFov": "NAME",
+        "orderNumber": "5435354",
+        "formDate": "2023-06-10"
+      },
+      "items": {
+        "0": {
+          "articleNumber": "454256543",
+          "description": "some test",
+          "unit": "5ltr",
+          "quantity": "4"
+        }
+      },
+      "reasons": {
+        "textReasons": "color",
+        "inputError": false,
+        "pickFault": false,
+        "customerError": false,
+        "damage": true
+      },
+      "agreements": {
+        "text": "just return"
+      },
+      "actions": {
+        "return": {
+          "used": true,
+          "performedBy": "max",
+          "completed": "2023-06-17"
+        },
+        "exchange": {
+          "used": false,
+          "performedBy": "",
+          "completed": false
+        },
+        "newReceipt": {
+          "used": false,
+          "performedBy": "",
+          "completed": false
+        },
+        "retrieve": {
+          "used": false,
+          "performedBy": "",
+          "completed": false
+        },
+        "credit": {
+          "used": false,
+          "performedBy": "",
+          "completed": false
+        }
       }
     }
   }
