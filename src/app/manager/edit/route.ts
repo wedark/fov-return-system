@@ -8,7 +8,7 @@ import { NextApiResponse } from 'next';
 
 // EDIT
 export async function POST(request: Request) {
-  console.log(request);
+  console.log(JSON.stringify(request, undefined, 2));
   // const url = new URL(request.url).href;
   // get action and file params from GET params of the url
 

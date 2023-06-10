@@ -104,11 +104,11 @@ export interface SimpleForm {
   };
   address: {
     street: string;
-    postalCode: number;
+    postalCode: string;
   };
   internal: {
     handlerFov: string;
-    orderNumber: string;
+    orderNumber: number;
     formDate: string;
   };
   items: {
@@ -148,8 +148,8 @@ export const defaultForm: FinalFormType = {
       value: '',
     },
     postalCode: {
-      inputType: 'number',
-      value: 0,
+      inputType: 'text',
+      value: '',
     },
   },
   internal: {
@@ -158,8 +158,8 @@ export const defaultForm: FinalFormType = {
       value: '',
     },
     orderNumber: {
-      inputType: 'text',
-      value: '',
+      inputType: 'number',
+      value: 0,
     },
     formDate: {
       inputType: 'date',

@@ -5,15 +5,16 @@ import path from 'path';
 
 import type { formDataExample } from '~/types/exampleJSON';
 import { NextApiResponse } from 'next';
+import { SimpleForm } from '~/types/form';
 
 // NEW
 export async function POST(request: Request) {
-  console.log(request);
+  console.log(JSON.stringify(request, undefined, 2));
 
   const currentPath = process.cwd();
 
   // console.log('calling GET on manager');
-  const bodyJson = (await request.json()) as unknown as typeof formDataExample;
+  const bodyJson = (await request.json()) as SimpleForm;
   const customerNumber = bodyJson.customerNumber;
 
   const pathToNewFile = path.join(currentPath, `./files/${customerNumber}.json`);

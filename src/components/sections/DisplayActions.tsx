@@ -49,6 +49,7 @@ export default function DisplayActions({
                   } as typeof form.actions,
                 });
               }}
+              {...(!value.used ? { disabled: true } : {})}
             />
             <GenerateInputField
               name="Completed"
@@ -65,6 +66,7 @@ export default function DisplayActions({
                   } as typeof form.actions,
                 });
               }}
+              {...(!value.used ? { disabled: true } : {})}
             />
           </div>
         );

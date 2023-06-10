@@ -1,0 +1,134 @@
+{
+  "customerNumber": "043245",
+  "customerDetails": {
+    "businessName": "maks and co",
+    "contact": ""
+  },
+  "address": {
+    "street": "",
+    "postalCode": "43f3d"
+  },
+  "internal": {
+    "handlerFov": "",
+    "orderNumber": 0,
+    "formDate": "2023-06-10"
+  },
+  "items": {
+    "0": {
+      "articleNumber": 0,
+      "description": "",
+      "unit": "",
+      "quantity": 0
+    },
+    "1": {
+      "articleNumber": 0,
+      "description": "",
+      "unit": "",
+      "quantity": 0
+    }
+  },
+  "reasons": {
+    "textReasons": "",
+    "inputError": false,
+    "pickFault": false,
+    "customerError": false,
+    "damage": false
+  },
+  "agreements": {
+    "text": ""
+  },
+  "actions": {
+    "return": {
+      "used": true,
+      "performedBy": "some",
+      "completed": false
+    },
+    "exchange": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "newReceipt": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "retrieve": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "credit": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    }
+  },
+  "default": {
+    "customerNumber": "043245",
+    "customerDetails": {
+      "businessName": "",
+      "contact": ""
+    },
+    "address": {
+      "street": "",
+      "postalCode": "43f3d"
+    },
+    "internal": {
+      "handlerFov": "",
+      "orderNumber": 0,
+      "formDate": "2023-06-10"
+    },
+    "items": {
+      "0": {
+        "articleNumber": 0,
+        "description": "",
+        "unit": "",
+        "quantity": 0
+      },
+      "1": {
+        "articleNumber": 0,
+        "description": "",
+        "unit": "",
+        "quantity": 0
+      }
+    },
+    "reasons": {
+      "textReasons": "",
+      "inputError": false,
+      "pickFault": false,
+      "customerError": false,
+      "damage": false
+    },
+    "agreements": {
+      "text": ""
+    },
+    "actions": {
+      "return": {
+        "used": false,
+        "performedBy": "",
+        "completed": false
+      },
+      "exchange": {
+        "used": false,
+        "performedBy": "",
+        "completed": false
+      },
+      "newReceipt": {
+        "used": false,
+        "performedBy": "",
+        "completed": false
+      },
+      "retrieve": {
+        "used": false,
+        "performedBy": "",
+        "completed": false
+      },
+      "credit": {
+        "used": false,
+        "performedBy": "",
+        "completed": false
+      }
+    }
+  }
+}
