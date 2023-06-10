@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { SimpleForm } from '~/types/form';
 
@@ -24,12 +24,14 @@ export default function InputForm({
 }) {
   const [form, setForm] = useState<SimpleForm>(simplifiedForm);
 
-  // get form from manager
-
-  // generate form to display
-
   const router = useRouter();
-  // const action =
+
+  useEffect(() => {
+    const customerNumber = Number(location.search.split('?')[1]);
+    if (customerNumber) {
+      setForm((prev) => ({ ...prev, customerNumber }));
+    }
+  }, []);
 
   return (
     <>
