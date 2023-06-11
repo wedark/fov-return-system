@@ -11,6 +11,8 @@ import {
   SingleSection,
   ItemsWrapper,
   ReasonsWrapper,
+  AgreementsWrapper,
+  ActionsWrapper,
 } from './DynamiсForm.styled';
 import { StyledButton } from './FilesOverview.styles';
 
@@ -115,23 +117,27 @@ function DisplayForm({
           <div>{GenerateSection({ section: 'reasons', form, setForm })}</div>
         </div>
       </ReasonsWrapper>
-      <h3>Agreements</h3>
-      {GenerateInputField({
-        name: 'Agreements',
-        input: {
-          inputType: defaultForm.agreements.text.inputType,
-          value: form.agreements.text,
-        },
-        setFunction: (value) => {
-          setForm({
-            ...form,
-            agreements: { ...form.agreements, text: value as typeof form.agreements.text },
-          });
-        },
-      })}
-
-      <h3>Actions</h3>
-      <DisplayActions actions={form.actions} form={form} setForm={setForm} />
+      <AgreementsWrapper>
+        <h3>Agreements</h3>
+        {GenerateOnlyInput({
+          input: {
+            inputType: defaultForm.agreements.text.inputType,
+            value: form.agreements.text,
+          },
+          setFunction: (value) => {
+            setForm({
+              ...form,
+              agreements: { ...form.agreements, text: value as typeof form.agreements.text },
+            });
+          },
+        })}
+      </AgreementsWrapper>
+      <ActionsWrapper>
+        <h3>Actions</h3>
+        <div>
+          <DisplayActions actions={form.actions} form={form} setForm={setForm} />
+        </div>
+      </ActionsWrapper>
     </FormEditContainer>
   );
 }

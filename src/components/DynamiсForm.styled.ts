@@ -69,6 +69,58 @@ export const LabeledInput = styled.div`
   }
 `;
 
+export const AgreementsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  textarea {
+    width: 100%;
+    min-width: 15em;
+    min-height: 4em;
+    max-height: 12em;
+    resize: vertical;
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+  }
+`;
+
+export const ActionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & > div {
+      /* background: red; */
+      display: grid;
+      grid-template-columns: 0.275fr 0.45fr 0.25fr;
+      & > * {
+        padding-left: 2rem;
+        border-right: 1px solid black;
+      }
+      & > *:first-child {
+        padding-left: 0;
+        padding-right: 2rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      & > *:last-child {
+        border: none;
+      }
+    }
+  }
+`;
+
 export const ItemsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,12 +144,15 @@ export const ReasonsWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 2rem;
+    /* gap: 2rem; */
 
     & > div:first-child {
+      padding-right: 1rem;
       height: 100%;
+      border-right: 1px solid black;
     }
     & > div:last-child {
+      padding-left: 1rem;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
