@@ -1,9 +1,7 @@
-import { NextResponse } from 'next/server';
 import { writeFile, rm } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
 
-import { NextApiResponse } from 'next';
 import { checkIfCompleted } from '~/utils/formCheck';
 import { SimpleForm } from '~/types/form';
 import { formValidator } from '~/utils/sharedManager';
@@ -12,7 +10,6 @@ import { formValidator } from '~/utils/sharedManager';
 export async function POST(request: Request) {
   const currentPath = process.cwd();
 
-  // get everything after ? in url
   const url = new URL(request.url).href;
   const folder = url.split('?').pop();
 

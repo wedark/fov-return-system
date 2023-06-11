@@ -13,7 +13,7 @@ import {
   PrintModeSwitch,
 } from './InputForm.styled';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 export default function InputForm({
   simplifiedForm,
@@ -27,12 +27,7 @@ export default function InputForm({
   const [form, setForm] = useState<SimpleForm>(simplifiedForm);
   const [validationErrors, setValidationErrors] = useState<ValidationError[]>([]);
 
-  // when form is changed remove all validation errors
-
   useEffect(() => {
-    // const fields = validationErrors.map((error) => {
-
-    // }
     validationErrors.forEach((error) => {
       const field = error.referenceId;
       console.log('add highlight', field);
@@ -59,12 +54,6 @@ export default function InputForm({
     };
   }, [validationErrors]);
 
-  // handle the fields that are highlighted and unhighlighte them when they are changed
-  // useEffect(() => {
-  //   const fields = highlightedFields.filter((field) => {
-
-  //   }, [form]);
-
   const router = useRouter();
 
   return (
@@ -82,30 +71,7 @@ export default function InputForm({
           Switch print mode
         </PrintModeSwitch>
       )}
-      {/* <Link
-        href="/overview"
-        style={{
-          position: 'absolute',
-          top: '1rem',
-          left: '1rem',
-        }}
-        onClick={(e) => {
-          // check if the form has been changed
-          // if so, ask if the user wants to save
-          // if not, just go to the overview
-          e.preventDefault();
-          if (confirm('Do you want to save the form?')) {
-            fetch('/manager', { method: 'POST', body: JSON.stringify(form) }).then((res) => {
-              console.log(res);
-              router.push('/overview');
-            });
-          } else {
-            router.push('/overview');
-          }
-        }}
-      >
-        Overview
-      </Link> */}
+
       <FormEditorHeading>Form Editor</FormEditorHeading>
       <InputFormWrapper>
         {/* <div>
@@ -131,9 +97,8 @@ export default function InputForm({
           <PreviewForm form={form} />
           <button
             onClick={() => {
-              // console.log(location.pathname.split('/')[1]);
               console.log(form);
-              // get everything after ? in the url
+
               fetch(`/manager/${action}?${folder || ''}`, {
                 method: 'POST',
                 body: JSON.stringify(form),

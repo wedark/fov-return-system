@@ -9,13 +9,9 @@ import { formValidator } from '~/utils/sharedManager';
 // NEW
 export async function POST(request: Request) {
   const currentPath = process.cwd();
-
-  // console.log('calling GET on manager');
   const bodyJson = (await request.json()) as SimpleForm;
   const customerNumber = bodyJson.customerNumber;
   console.log('New file with customerNumber', customerNumber);
-
-  // const pathToNewFile = path.join(currentPath, `./files/${customerNumber}.json`);
 
   const pathInActiveCheck = path.join(currentPath, `./files/active/${customerNumber}.json`);
   const pathInCompletedCheck = path.join(currentPath, `./files/completed/${customerNumber}.json`);
@@ -36,7 +32,6 @@ export async function POST(request: Request) {
   const formCompleted = checkIfCompleted(bodyJson);
 
   const folder = formCompleted ? 'completed' : 'active';
-
   const pathToNewFile = path.join(currentPath, `./files/${folder}/${customerNumber}.json`);
 
   await writeFile(pathToNewFile, JSON.stringify(bodyJson, undefined, 2), {
