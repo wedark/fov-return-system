@@ -1,5 +1,5 @@
-// const formsContext = require.context('../../files', false, /\.(json)$/);
-const formsContext = require.context('../../files', false, /\.json$/);
+const formsContext = require.context('../../files', false, /\.(json)$/);
+// const formsContext = require.context('../../files', false, /\.json$/);
 
 export const formsJsonFiles = preventRequireContextKeyDuplication(formsContext.keys()).map(
   (key) => ({
