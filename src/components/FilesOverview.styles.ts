@@ -55,12 +55,17 @@ export const StyledButton = styled.button`
   font-size: 1rem;
   color: var(--eerieBlack);
   background: none;
-
-  ${outlineStyle}
+  border: 1px solid var(--eerieBlack);
+  border-radius: 0.5rem;
 
   padding: 0.25rem 0.75rem;
   transition-duration: 0.4s;
   transition-property: color, background-color;
+
+  &:hover {
+    background: red;
+    color: white;
+  }
 `;
 
 export const OverviewTableWrapper = styled.div`
