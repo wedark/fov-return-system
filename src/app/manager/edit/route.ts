@@ -3,18 +3,29 @@ import { writeFile, rm } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
 
-import type { formDataExample } from '~/types/exampleJSON';
 import { NextApiResponse } from 'next';
+import { checkIfCompleted } from '~/utils/formCheck';
+import { SimpleForm } from '~/types/form';
 
 // EDIT
 export async function POST(request: Request) {
   const currentPath = process.cwd();
 
-  const bodyJson = (await request.json()) as unknown as typeof formDataExample;
+  // get everything after ? in url
+  const url = new URL(request.url).href;
+  const folder = url.split('?').pop();
+
+  const bodyJson = (await request.json()) as SimpleForm;
   const customerNumber = bodyJson.customerNumber;
   console.log('Edit file with customerNumber', customerNumber);
 
-  const incomingPathToFile = path.join(currentPath, `./files/${customerNumber}.json`);
+  if (!folder) {
+    return new Response(undefined, {
+      status: 400,
+      statusText: 'Bad Request: folder is undefined',
+    });
+  }
+  const incomingPathToFile = path.join(currentPath, `./files/${folder}/${customerNumber}.json`);
 
   const fileExists = existsSync(incomingPathToFile);
 
@@ -26,7 +37,19 @@ export async function POST(request: Request) {
     });
   }
 
-  await writeFile(incomingPathToFile, JSON.stringify(bodyJson, undefined, 2), {
+  const formCompleted = checkIfCompleted(bodyJson);
+
+  const neededFolder = formCompleted ? 'completed' : 'active';
+  if (folder !== neededFolder) {
+    await rm(incomingPathToFile);
+  }
+
+  const correctPathToFile = path.join(
+    currentPath,
+    `./files/${neededFolder}/${customerNumber}.json`,
+  );
+
+  await writeFile(correctPathToFile, JSON.stringify(bodyJson, undefined, 2), {
     encoding: 'utf-8',
   });
 

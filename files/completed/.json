@@ -1,7 +1,7 @@
 {
-  "customerNumber": 33333332323,
+  "customerNumber": "",
   "customerDetails": {
-    "businessName": "loh",
+    "businessName": "",
     "contact": ""
   },
   "address": {
@@ -17,8 +17,8 @@
     "0": {
       "articleNumber": 0,
       "description": "",
-      "unit": "1tre",
-      "quantity": 1
+      "unit": "",
+      "quantity": 0
     },
     "1": {
       "articleNumber": 0,
@@ -39,7 +39,7 @@
   },
   "actions": {
     "return": {
-      "used": false,
+      "used": true,
       "performedBy": "",
       "completed": false
     },

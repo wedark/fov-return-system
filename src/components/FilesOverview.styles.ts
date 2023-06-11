@@ -25,7 +25,7 @@ const outlineStyle = `
   }
 `;
 
-export const StyledLink = styled(Link)<{ textsize?: string; outlined?: boolean }>`
+export const StyledLink = styled(Link)<{ textsize?: string; outlined?: string }>`
   font-size: ${({ textsize = '1rem' }) => textsize};
   cursor: pointer;
   color: var(--eerieBlack);

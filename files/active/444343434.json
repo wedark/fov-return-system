@@ -1,8 +1,8 @@
 {
-  "customerNumber": 1010212,
+  "customerNumber": 444343434,
   "customerDetails": {
-    "businessName": "maksmim",
-    "contact": "some"
+    "businessName": "aa again",
+    "contact": ""
   },
   "address": {
     "street": "",
@@ -10,21 +10,21 @@
   },
   "internal": {
     "handlerFov": "",
-    "orderNumber": 12912122,
+    "orderNumber": 0,
     "formDate": "2023-06-11"
   },
   "items": {
     "0": {
-      "articleNumber": 2343234323,
-      "description": " amens",
-      "unit": "4fd",
-      "quantity": 433
-    },
-    "1": {
-      "articleNumber": 11111,
+      "articleNumber": 0,
       "description": "",
       "unit": "",
-      "quantity": 3
+      "quantity": 0
+    },
+    "1": {
+      "articleNumber": 0,
+      "description": "",
+      "unit": "",
+      "quantity": 0
     }
   },
   "reasons": {
@@ -39,12 +39,12 @@
   },
   "actions": {
     "return": {
-      "used": false,
+      "used": true,
       "performedBy": "",
       "completed": false
     },
     "exchange": {
-      "used": false,
+      "used": true,
       "performedBy": "",
       "completed": false
     },
@@ -65,10 +65,10 @@
     }
   },
   "default": {
-    "customerNumber": 1010212,
+    "customerNumber": 444343434,
     "customerDetails": {
-      "businessName": "maksmim",
-      "contact": "some"
+      "businessName": "aa again",
+      "contact": ""
     },
     "address": {
       "street": "",
@@ -76,15 +76,15 @@
     },
     "internal": {
       "handlerFov": "",
-      "orderNumber": 12912122,
+      "orderNumber": 0,
       "formDate": "2023-06-11"
     },
     "items": {
       "0": {
-        "articleNumber": 2343234323,
-        "description": " amens",
-        "unit": "4fd",
-        "quantity": 433
+        "articleNumber": 0,
+        "description": "",
+        "unit": "",
+        "quantity": 0
       },
       "1": {
         "articleNumber": 0,
@@ -105,12 +105,12 @@
     },
     "actions": {
       "return": {
-        "used": false,
+        "used": true,
         "performedBy": "",
         "completed": false
       },
       "exchange": {
-        "used": false,
+        "used": true,
         "performedBy": "",
         "completed": false
       },

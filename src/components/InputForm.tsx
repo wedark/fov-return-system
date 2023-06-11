@@ -18,9 +18,11 @@ import Link from 'next/link';
 export default function InputForm({
   simplifiedForm,
   action,
+  folder,
 }: {
   simplifiedForm: SimpleForm;
   action: 'new' | 'edit';
+  folder?: string;
 }) {
   const [form, setForm] = useState<SimpleForm>(simplifiedForm);
 
@@ -87,7 +89,8 @@ export default function InputForm({
             onClick={() => {
               // console.log(location.pathname.split('/')[1]);
               console.log(form);
-              fetch(`/manager/${action}`, {
+              // get everything after ? in the url
+              fetch(`/manager/${action}?${folder || ''}`, {
                 method: 'POST',
                 body: JSON.stringify(form),
               }).then((res) => {

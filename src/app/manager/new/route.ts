@@ -3,6 +3,7 @@ import { existsSync } from 'fs';
 import path from 'path';
 
 import { SimpleForm } from '~/types/form';
+import { checkIfCompleted } from '~/utils/formCheck';
 
 // NEW
 export async function POST(request: Request) {
@@ -13,9 +14,11 @@ export async function POST(request: Request) {
   const customerNumber = bodyJson.customerNumber;
   console.log('New file with customerNumber', customerNumber);
 
-  const pathToNewFile = path.join(currentPath, `./files/${customerNumber}.json`);
+  // const pathToNewFile = path.join(currentPath, `./files/${customerNumber}.json`);
 
-  const fileExists = existsSync(pathToNewFile);
+  const pathInActiveCheck = path.join(currentPath, `./files/active/${customerNumber}.json`);
+  const pathInCompletedCheck = path.join(currentPath, `./files/completed/${customerNumber}.json`);
+  const fileExists = existsSync(pathInActiveCheck) || existsSync(pathInCompletedCheck);
 
   if (fileExists) {
     return new Response(undefined, {
@@ -23,6 +26,12 @@ export async function POST(request: Request) {
       statusText: 'Conflict: File already exists | use edit NOT new',
     });
   }
+
+  const formCompleted = checkIfCompleted(bodyJson);
+
+  const folder = formCompleted ? 'completed' : 'active';
+
+  const pathToNewFile = path.join(currentPath, `./files/${folder}/${customerNumber}.json`);
 
   await writeFile(pathToNewFile, JSON.stringify(bodyJson, undefined, 2), {
     encoding: 'utf-8',

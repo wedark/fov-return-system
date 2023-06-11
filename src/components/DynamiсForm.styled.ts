@@ -153,7 +153,6 @@ export const ReasonsWrapper = styled.div`
       width: 35%;
     }
     & > div:last-child {
-      background: red;
       padding-left: 1rem;
       display: flex;
       flex-direction: row;
