@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { SimpleForm } from '~/types/form';
 import { formsJsonFiles } from '~/utils/allForms';
-import FileDeleteButton from './FileDeleteButton';
 import { useEffect, useState } from 'react';
 
 const headings = ['Customer number', 'Business name'];
