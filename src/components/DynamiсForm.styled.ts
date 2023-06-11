@@ -69,6 +69,20 @@ export const LabeledInput = styled.div`
     border-bottom: 1px solid black;
   }
 `;
+
+export const ItemsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+
+  & > table {
+    border-collapse: separate;
+    border-spacing: 0.5rem 0.25rem;
+    margin-left: -0.5rem;
+  }
+`;
+
 export const SingleSection = styled.div`
   width: 100%;
   display: flex;

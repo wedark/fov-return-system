@@ -5,7 +5,12 @@ import DisplayActions from './sections/DisplayActions';
 import type { SimpleForm } from '~/types/form';
 import DisplayItems from './sections/DisplayItems';
 import GenerateSection from './sections/GenerateSection';
-import { FormEditContainer, DoubleSection, SingleSection } from './DynamiсForm.styled';
+import {
+  FormEditContainer,
+  DoubleSection,
+  SingleSection,
+  ItemsWrapper,
+} from './DynamiсForm.styled';
 
 export default function DynamicForm({
   form,
@@ -60,27 +65,28 @@ function DisplayForm({
         <h3>Internal</h3>
         <div>{GenerateSection({ section: 'internal', form, setForm })}</div>
       </SingleSection>
-
-      <h3>Items</h3>
-      {DisplayItems({ items: form.items, setForm })}
-      <button
-        onClick={() =>
-          setForm({
-            ...form,
-            items: {
-              ...form.items,
-              [Object.keys(form.items).length]: {
-                articleNumber: 0,
-                description: '',
-                unit: '',
-                quantity: 0,
+      <ItemsWrapper>
+        <h3>Items</h3>
+        {DisplayItems({ items: form.items, setForm })}
+        <button
+          onClick={() =>
+            setForm({
+              ...form,
+              items: {
+                ...form.items,
+                [Object.keys(form.items).length]: {
+                  articleNumber: 0,
+                  description: '',
+                  unit: '',
+                  quantity: 0,
+                },
               },
-            },
-          })
-        }
-      >
-        Add new item
-      </button>
+            })
+          }
+        >
+          Add new item
+        </button>
+      </ItemsWrapper>
 
       <h3>Reasons</h3>
       {GenerateSection({ section: 'reasons', form, setForm })}
