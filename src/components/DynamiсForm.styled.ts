@@ -94,7 +94,7 @@ export const ReasonsWrapper = styled.div`
     align-items: flex-start;
     gap: 1rem;
 
-    & > div {
+    & > div:first-child {
       height: 100%;
     }
     & > div:last-child {
