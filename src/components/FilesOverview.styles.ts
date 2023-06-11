@@ -32,8 +32,8 @@ const outlineStyle = `
   }
 `;
 
-export const StyledLink = styled(Link)<{ textSize?: string; outlined?: boolean }>`
-  font-size: ${({ textSize = '1rem' }) => textSize};
+export const StyledLink = styled(Link)<{ textsize?: string; outlined?: boolean }>`
+  font-size: ${({ textsize = '1rem' }) => textsize};
   cursor: pointer;
   color: var(--eerieBlack);
   transition-duration: 0.4s;
@@ -77,6 +77,7 @@ export const OverviewTableWrapper = styled.div`
     & td {
       border: 1px solid black;
       padding: 0.5rem;
+      /* width: 40%; */
     }
     & th {
       padding-bottom: 0.5rem;

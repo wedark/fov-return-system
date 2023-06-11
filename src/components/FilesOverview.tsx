@@ -17,7 +17,7 @@ export default function FilesOverview() {
     <FormOverviewWrapper>
       <h1>Overview</h1>
       <ControlDiv>
-        <StyledLink href={`/new`} textSize="1.25rem" outlined>
+        <StyledLink href={`/new`} textsize="1.25rem" outlined>
           New return form
         </StyledLink>
       </ControlDiv>
@@ -56,7 +56,12 @@ export default function FilesOverview() {
                       </StyledLink>
                     </td>
                   ))}
-                  <td>
+                  <td
+                    style={{
+                      border: 'none',
+                      width: '5%',
+                    }}
+                  >
                     <StyledButton
                       onClick={() => {
                         fetch(`/manager/delete?filename=${formJsonFile.filename}`, {
