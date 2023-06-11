@@ -1,30 +1,30 @@
 {
-  "customerNumber": "043245",
+  "customerNumber": 1010212,
   "customerDetails": {
-    "businessName": "maks and co",
-    "contact": ""
+    "businessName": "maksmim",
+    "contact": "some"
   },
   "address": {
     "street": "",
-    "postalCode": "43f3d"
+    "postalCode": ""
   },
   "internal": {
     "handlerFov": "",
-    "orderNumber": 0,
-    "formDate": "2023-06-10"
+    "orderNumber": 12912122,
+    "formDate": "2023-06-11"
   },
   "items": {
     "0": {
-      "articleNumber": 0,
-      "description": "",
-      "unit": "",
-      "quantity": 0
+      "articleNumber": 2343234323,
+      "description": " amens",
+      "unit": "4fd",
+      "quantity": 433
     },
     "1": {
-      "articleNumber": 0,
+      "articleNumber": 11111,
       "description": "",
       "unit": "",
-      "quantity": 0
+      "quantity": 3
     }
   },
   "reasons": {
@@ -39,8 +39,8 @@
   },
   "actions": {
     "return": {
-      "used": true,
-      "performedBy": "some",
+      "used": false,
+      "performedBy": "",
       "completed": false
     },
     "exchange": {
@@ -65,26 +65,26 @@
     }
   },
   "default": {
-    "customerNumber": "043245",
+    "customerNumber": 1010212,
     "customerDetails": {
-      "businessName": "",
-      "contact": ""
+      "businessName": "maksmim",
+      "contact": "some"
     },
     "address": {
       "street": "",
-      "postalCode": "43f3d"
+      "postalCode": ""
     },
     "internal": {
       "handlerFov": "",
-      "orderNumber": 0,
-      "formDate": "2023-06-10"
+      "orderNumber": 12912122,
+      "formDate": "2023-06-11"
     },
     "items": {
       "0": {
-        "articleNumber": 0,
-        "description": "",
-        "unit": "",
-        "quantity": 0
+        "articleNumber": 2343234323,
+        "description": " amens",
+        "unit": "4fd",
+        "quantity": 433
       },
       "1": {
         "articleNumber": 0,

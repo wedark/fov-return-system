@@ -2,28 +2,10 @@
 import Link from 'next/link';
 import { SimpleForm } from '~/types/form';
 import { formsJsonFiles } from '~/utils/allForms';
-import { useEffect, useState } from 'react';
 
 const headings = ['Customer number', 'Business name'];
 
 export default function FilesOverview() {
-  const [newCustomerNumber, setNewCustomerNumber] = useState<number | null>(null);
-
-  useEffect(() => {
-    const formsLength = formsJsonFiles.length;
-    let notUsedCustomerNumber = formsLength;
-    if (formsLength) {
-      while (
-        formsJsonFiles.some(
-          (form) => Number(form.imported.customerNumber) === notUsedCustomerNumber,
-        )
-      ) {
-        notUsedCustomerNumber++;
-      }
-    }
-    setNewCustomerNumber(notUsedCustomerNumber);
-  }, []);
-
   return (
     <div>
       <table style={{ width: '80%' }}>
@@ -79,7 +61,7 @@ export default function FilesOverview() {
         </tbody>
       </table>
       <Link
-        href={`/new?${newCustomerNumber || ''}`}
+        href={`/new`}
         onClick={() => {
           // console.log('new return form');
         }}

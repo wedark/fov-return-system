@@ -8,12 +8,11 @@ import { NextApiResponse } from 'next';
 
 // EDIT
 export async function POST(request: Request) {
-  console.log(JSON.stringify(request, undefined, 2));
-
   const currentPath = process.cwd();
 
   const bodyJson = (await request.json()) as unknown as typeof formDataExample;
   const customerNumber = bodyJson.customerNumber;
+  console.log('Edit file with customerNumber', customerNumber);
 
   const incomingPathToFile = path.join(currentPath, `./files/${customerNumber}.json`);
 

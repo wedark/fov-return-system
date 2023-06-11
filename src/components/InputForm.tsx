@@ -26,13 +26,6 @@ export default function InputForm({
 
   const router = useRouter();
 
-  useEffect(() => {
-    const customerNumber = Number(location.search.split('?')[1]);
-    if (customerNumber) {
-      setForm((prev) => ({ ...prev, customerNumber }));
-    }
-  }, []);
-
   return (
     <>
       {process.env.NODE_ENV === 'development' && (
@@ -93,7 +86,7 @@ export default function InputForm({
           <button
             onClick={() => {
               // console.log(location.pathname.split('/')[1]);
-
+              console.log(form);
               fetch(`/manager/${action}`, {
                 method: 'POST',
                 body: JSON.stringify(form),

@@ -6,13 +6,12 @@ import { SimpleForm } from '~/types/form';
 
 // NEW
 export async function POST(request: Request) {
-  console.log(JSON.stringify(request, undefined, 2));
-
   const currentPath = process.cwd();
 
   // console.log('calling GET on manager');
   const bodyJson = (await request.json()) as SimpleForm;
   const customerNumber = bodyJson.customerNumber;
+  console.log('New file with customerNumber', customerNumber);
 
   const pathToNewFile = path.join(currentPath, `./files/${customerNumber}.json`);
 

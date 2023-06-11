@@ -53,7 +53,16 @@ export function GenerateOnlyInput({
       }
       checked={inputType === 'checkbox' ? (input.value as boolean) : undefined}
       onChange={(e) => {
-        setFunction(e.target[inputType === 'checkbox' ? 'checked' : 'value']);
+        const setVal = inputType === 'checkbox' ? e.target.checked : e.target.value;
+        // ? If the value is supposed to be a number, then convert it to a number
+        // ? However also allow the value to be an empty string (To erase the 0 at first)
+        const checkedVal =
+          inputType === 'number' || inputType === 'incremental'
+            ? setVal
+              ? Number(setVal)
+              : ''
+            : setVal;
+        setFunction(checkedVal as typeof input.value);
       }}
       className={inputType === 'incremental' ? 'input-incremental' : ''}
       {...props}
