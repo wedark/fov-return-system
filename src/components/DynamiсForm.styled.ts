@@ -8,12 +8,13 @@ export const FormEditContainer = styled.div`
 
   h3 {
     margin: 0;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
   }
 `;
 
 export const StyledInput = styled.input`
-  padding: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  box-sizing: border-box;
   font-size: 0.9rem;
   outline: none;
   border: 1px solid black;
@@ -33,7 +34,7 @@ export const StyledInput = styled.input`
 
   /* input with class input-incremental */
   &.input-incremental {
-    width: 4em;
+    width: 5em;
   }
 `;
 
@@ -52,7 +53,7 @@ export const SingleSection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
+  gap: 1rem;
   & > div {
     display: flex;
     flex-direction: row;
@@ -70,6 +71,7 @@ export const DoubleSection = styled.div`
     box-sizing: border-box;
     width: 50%;
     display: flex;
+    gap: 1rem;
     flex-direction: column;
     align-items: flex-start;
   }
