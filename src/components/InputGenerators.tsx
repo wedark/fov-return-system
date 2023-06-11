@@ -1,5 +1,6 @@
 import { SimpleInput } from '~/types/form';
 import { toCapitalizedWords } from '~/utils/toCapitalizedWords';
+import { LabeledInput, StyledInput } from './DynamiсForm.styled';
 
 export function GenerateInputField({
   name,
@@ -13,12 +14,12 @@ export function GenerateInputField({
   props?: React.HTMLAttributes<HTMLInputElement> | React.HTMLAttributes<HTMLTextAreaElement>;
 }) {
   return (
-    <div
+    <LabeledInput
     // style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '0.5em' }}
     >
       <span>{toCapitalizedWords(name)}</span>
       <GenerateOnlyInput input={input} setFunction={setFunction} {...props} />
-    </div>
+    </LabeledInput>
   );
 }
 
@@ -42,8 +43,8 @@ export function GenerateOnlyInput({
       {...props}
     />
   ) : (
-    <input
-      type={inputType === 'incremental' ? 'number' : inputType}
+    <StyledInput
+      type={inputType === 'incremental' ? 'number' : inputType === 'shortText' ? 'text' : inputType}
       value={
         inputType === 'checkbox'
           ? undefined
@@ -65,6 +66,8 @@ export function GenerateOnlyInput({
         setFunction(checkedVal as typeof input.value);
       }}
       className={inputType === 'incremental' ? 'input-incremental' : ''}
+      // if shortText width 5em
+      style={inputType === 'shortText' ? { width: '5em' } : {}}
       {...props}
     />
   );

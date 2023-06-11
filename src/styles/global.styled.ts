@@ -35,8 +35,14 @@ export const GlobalStyle = createGlobalStyle`${css`
 
   main {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
   }
 `}`;

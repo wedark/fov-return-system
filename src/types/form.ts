@@ -1,4 +1,4 @@
-type InputType = 'date' | 'number' | 'incremental' | 'text' | 'textarea' | 'checkbox';
+type InputType = 'date' | 'number' | 'incremental' | 'text' | 'textarea' | 'checkbox' | 'shortText';
 
 type SectionType = 'mix' | 'items' | 'reasons' | 'agreements' | 'actions';
 export const sectionNames = [
@@ -177,7 +177,7 @@ export const defaultForm: FinalFormType = {
         value: '',
       },
       unit: {
-        inputType: 'text',
+        inputType: 'shortText',
         value: '',
       },
       quantity: {

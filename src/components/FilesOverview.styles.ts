@@ -3,13 +3,6 @@ import { styled } from 'styled-components';
 import css from 'styled-jsx/css';
 import { string } from 'zod';
 
-export const FormOverviewWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-`;
-
 export const ControlDiv = styled.div`
   width: 80%;
   height: 4em;

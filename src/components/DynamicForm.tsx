@@ -1,13 +1,11 @@
 import { defaultForm } from '~/types/form';
-// import { sectionNames } from '~/types/form';
 import { GenerateInputField } from './InputGenerators';
 import DisplayActions from './sections/DisplayActions';
 
 import type { SimpleForm } from '~/types/form';
 import DisplayItems from './sections/DisplayItems';
 import GenerateSection from './sections/GenerateSection';
-
-// const simplifiedForm: SimpleForm = simplifyObjRec(defaultForm);
+import { FormEditContainer, DoubleSection, SingleSection } from './DynamiсForm.styled';
 
 export default function DynamicForm({
   form,
@@ -32,7 +30,8 @@ function DisplayForm({
   action: string;
 }) {
   return (
-    <div>
+    <FormEditContainer>
+      {/* Customer Number */}
       {action === 'new' ? (
         <GenerateInputField
           name="customerNumber"
@@ -47,18 +46,23 @@ function DisplayForm({
       ) : (
         <span>Customer Number: {form.customerNumber}</span>
       )}
-
-      <h3>Customer Information</h3>
-      {GenerateSection({ section: 'customerDetails', form, setForm })}
-
-      <h3>Address</h3>
-      {GenerateSection({ section: 'address', form, setForm })}
-      <h3>Internal</h3>
-      {GenerateSection({ section: 'internal', form, setForm })}
+      <DoubleSection>
+        <div>
+          <h3>Customer Information</h3>
+          {GenerateSection({ section: 'customerDetails', form, setForm })}
+        </div>
+        <div>
+          <h3>Address</h3>
+          {GenerateSection({ section: 'address', form, setForm })}
+        </div>
+      </DoubleSection>
+      <SingleSection>
+        <h3>Internal</h3>
+        <div>{GenerateSection({ section: 'internal', form, setForm })}</div>
+      </SingleSection>
 
       <h3>Items</h3>
       {DisplayItems({ items: form.items, form, setForm })}
-      {/* add new item */}
       <button
         onClick={() =>
           setForm({
@@ -94,8 +98,9 @@ function DisplayForm({
           });
         },
       })}
+
       <h3>Actions</h3>
       <DisplayActions actions={form.actions} form={form} setForm={setForm} />
-    </div>
+    </FormEditContainer>
   );
 }

@@ -2,19 +2,13 @@
 import Link from 'next/link';
 import { SimpleForm } from '~/types/form';
 import { formsJsonFiles } from '~/utils/allForms';
-import {
-  ControlDiv,
-  FormOverviewWrapper,
-  OverviewTableWrapper,
-  StyledButton,
-  StyledLink,
-} from './FilesOverview.styles';
+import { ControlDiv, OverviewTableWrapper, StyledButton, StyledLink } from './FilesOverview.styles';
 
 const headings = ['Customer number', 'Business name'];
 
 export default function FilesOverview() {
   return (
-    <FormOverviewWrapper>
+    <main>
       <h1>Overview</h1>
       <ControlDiv>
         <StyledLink href={`/new`} textsize="1.25rem" outlined>
@@ -79,6 +73,6 @@ export default function FilesOverview() {
           </tbody>
         </table>
       </OverviewTableWrapper>
-    </FormOverviewWrapper>
+    </main>
   );
 }
