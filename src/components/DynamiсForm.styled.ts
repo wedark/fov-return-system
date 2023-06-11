@@ -12,6 +12,26 @@ export const FormEditContainer = styled.div`
   }
 `;
 
+export const ItemDeleteButton = styled.button`
+  background: red;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--eerieBlack);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 10%;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  transition-property: background-color;
+
+  &:hover {
+    background: var(--eerieBlack);
+  }
+`;
+
 export const StyledInput = styled.input`
   padding: 0.25rem 0.5rem;
   box-sizing: border-box;

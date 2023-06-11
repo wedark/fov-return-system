@@ -1,0 +1,67 @@
+{
+  "customerNumber": 33333332323,
+  "customerDetails": {
+    "businessName": "loh",
+    "contact": ""
+  },
+  "address": {
+    "street": "",
+    "postalCode": ""
+  },
+  "internal": {
+    "handlerFov": "",
+    "orderNumber": 0,
+    "formDate": "2023-06-11"
+  },
+  "items": {
+    "0": {
+      "articleNumber": 0,
+      "description": "",
+      "unit": "1tre",
+      "quantity": 1
+    },
+    "1": {
+      "articleNumber": 0,
+      "description": "",
+      "unit": "",
+      "quantity": 0
+    }
+  },
+  "reasons": {
+    "textReasons": "",
+    "inputError": false,
+    "pickFault": false,
+    "customerError": false,
+    "damage": false
+  },
+  "agreements": {
+    "text": ""
+  },
+  "actions": {
+    "return": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "exchange": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "newReceipt": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "retrieve": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    },
+    "credit": {
+      "used": false,
+      "performedBy": "",
+      "completed": false
+    }
+  }
+}

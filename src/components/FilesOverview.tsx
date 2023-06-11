@@ -11,7 +11,7 @@ export default function FilesOverview() {
     <main>
       <h1>Overview</h1>
       <ControlDiv>
-        <StyledLink href={`/new`} textsize="1.25rem" outlined>
+        <StyledLink href={`/new`} textsize="1.25rem" outlined={true}>
           New return form
         </StyledLink>
       </ControlDiv>

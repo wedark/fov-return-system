@@ -13,7 +13,7 @@ export default function DynamicForm({
   action,
 }: {
   form: SimpleForm;
-  setForm: (form: SimpleForm) => void;
+  setForm: React.Dispatch<React.SetStateAction<SimpleForm>>;
   action: string;
 }) {
   return <DisplayForm form={form} setForm={setForm} action={action} />;
@@ -26,7 +26,7 @@ function DisplayForm({
   action,
 }: {
   form: SimpleForm;
-  setForm: (form: SimpleForm) => void;
+  setForm: React.Dispatch<React.SetStateAction<SimpleForm>>;
   action: string;
 }) {
   return (
@@ -62,7 +62,7 @@ function DisplayForm({
       </SingleSection>
 
       <h3>Items</h3>
-      {DisplayItems({ items: form.items, form, setForm })}
+      {DisplayItems({ items: form.items, setForm })}
       <button
         onClick={() =>
           setForm({

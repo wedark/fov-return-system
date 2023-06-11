@@ -1,17 +1,19 @@
 import { Item, SimpleForm, defaultForm } from '~/types/form';
 import { GenerateOnlyInput } from '../InputGenerators';
 import { toCapitalizedWords } from '~/utils/toCapitalizedWords';
+import { ItemDeleteButton } from '../DynamiсForm.styled';
 
 function GenerateItemFields({
   numKey,
   item,
-  form,
+  // form,
   setForm,
 }: {
   numKey: string;
   item: Item;
-  form: SimpleForm;
-  setForm: (form: SimpleForm) => void;
+  // form: SimpleForm;
+  // React set state function
+  setForm: React.Dispatch<React.SetStateAction<SimpleForm>>;
 }) {
   return (
     <>
@@ -21,18 +23,19 @@ function GenerateItemFields({
             <GenerateOnlyInput
               input={{
                 inputType: defaultForm.items[0][key].inputType,
-                value: form.items[Number(numKey)][key as keyof Item],
+                // value: form.items[Number(numKey)][key as keyof Item],
+                value: value as typeof value,
               }}
               setFunction={(value) => {
-                setForm({
-                  ...form,
-                  items: {
-                    ...form.items,
+                setForm((prev: SimpleForm) => {
+                  const newItems = {
+                    ...prev.items,
                     [numKey]: {
-                      ...form.items[Number(numKey)],
+                      ...prev.items[Number(numKey)],
                       [key]: value as typeof value,
                     },
-                  },
+                  };
+                  return { ...prev, items: newItems };
                 });
               }}
             />
@@ -43,36 +46,36 @@ function GenerateItemFields({
   );
 }
 
-function DeleteButton({
-  numKey,
-  form,
-  setForm,
-}: {
-  numKey: string;
-  form: SimpleForm;
-  setForm: (form: SimpleForm) => void;
-}) {
-  return (
-    <button
-      onClick={() => {
-        const newItems = { ...form.items };
-        delete newItems[Number(numKey)];
-        setForm({ ...form, items: newItems });
-      }}
-    >
-      Delete
-    </button>
-  );
-}
+// function DeleteButton({
+//   numKey,
+//   form,
+//   setForm,
+// }: {
+//   numKey: string;
+//   form: SimpleForm;
+//   setForm: (form: SimpleForm) => void;
+// }) {
+//   return (
+//     <button
+//       onClick={() => {
+//         const newItems = { ...form.items };
+//         delete newItems[Number(numKey)];
+//         setForm({ ...form, items: newItems });
+//       }}
+//     >
+//       Delete
+//     </button>
+//   );
+// }
 
 export default function DisplayItems({
   items,
-  form,
+  // form,
   setForm,
 }: {
   items: { [key: number]: Item };
-  form: SimpleForm;
-  setForm: (form: SimpleForm) => void;
+  // form: SimpleForm;
+  setForm: React.Dispatch<React.SetStateAction<SimpleForm>>;
 }) {
   // TODO! check for items.length !== 0 before trying Object.entries(), otherwise everything fails.
   return (
@@ -86,20 +89,22 @@ export default function DisplayItems({
         {Object.entries(items).map(([numKey, item]) => {
           return (
             <tr key={numKey}>
-              {GenerateItemFields({ form, item, setForm, numKey })}
+              {GenerateItemFields({ item, setForm, numKey })}
               {
                 // delete button if not first item
                 Number(numKey) !== 0 && (
                   <td>
-                    <button
+                    <ItemDeleteButton
                       onClick={() => {
-                        const newItems = { ...form.items };
-                        delete newItems[Number(numKey)];
-                        setForm({ ...form, items: newItems });
+                        setForm((prev: SimpleForm) => {
+                          const newItems = { ...prev.items };
+                          delete newItems[Number(numKey)];
+                          return { ...prev, items: newItems };
+                        });
                       }}
                     >
-                      Delete
-                    </button>
+                      &#10005;
+                    </ItemDeleteButton>
                   </td>
                 )
               }
