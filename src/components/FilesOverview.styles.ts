@@ -43,7 +43,7 @@ export const StyledLink = styled(Link)<{ textsize?: string; outlined?: boolean }
   `}
 `;
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<{ backcolor?: string; textcolor?: string }>`
   cursor: pointer;
   font-size: 1rem;
   color: var(--eerieBlack);
@@ -56,8 +56,8 @@ export const StyledButton = styled.button`
   transition-property: color, background-color;
 
   &:hover {
-    background: red;
-    color: white;
+    background: ${({ backcolor = 'red' }) => backcolor};
+    color: ${({ textcolor = 'white' }) => textcolor};
   }
 `;
 

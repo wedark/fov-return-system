@@ -13,23 +13,26 @@ export default function GenerateSection({
   return (
     <>
       {Object.entries(form[section]).map(([key, value]) => {
-        return (
-          <GenerateInputField
-            key={key}
-            name={key}
-            input={{
-              inputType: defaultForm[section][key].inputType,
+        // ! Normal filter later
+        if (!(section === 'reasons' && key === 'textReasons'))
+          return (
+            <GenerateInputField
+              key={key}
+              name={key}
+              input={{
+                inputType: defaultForm[section][key].inputType,
 
-              value: value as typeof value,
-            }}
-            setFunction={(value) => {
-              setForm({
-                ...form,
-                [section]: { ...form[section], [key]: value as typeof value },
-              });
-            }}
-          />
-        );
+                value: value as typeof value,
+              }}
+              setFunction={(value) => {
+                setForm({
+                  ...form,
+                  [section]: { ...form[section], [key]: value as typeof value },
+                });
+              }}
+            />
+          );
+        else return null;
       })}
     </>
   );

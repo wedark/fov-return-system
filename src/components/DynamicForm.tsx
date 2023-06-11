@@ -1,5 +1,5 @@
 import { defaultForm } from '~/types/form';
-import { GenerateInputField } from './InputGenerators';
+import { GenerateInputField, GenerateOnlyInput } from './InputGenerators';
 import DisplayActions from './sections/DisplayActions';
 
 import type { SimpleForm } from '~/types/form';
@@ -10,7 +10,9 @@ import {
   DoubleSection,
   SingleSection,
   ItemsWrapper,
+  ReasonsWrapper,
 } from './DynamiсForm.styled';
+import { StyledButton } from './FilesOverview.styles';
 
 export default function DynamicForm({
   form,
@@ -68,7 +70,9 @@ function DisplayForm({
       <ItemsWrapper>
         <h3>Items</h3>
         {DisplayItems({ items: form.items, setForm })}
-        <button
+        <StyledButton
+          backcolor="lime"
+          textcolor="black"
           onClick={() =>
             setForm({
               ...form,
@@ -85,11 +89,32 @@ function DisplayForm({
           }
         >
           Add new item
-        </button>
+        </StyledButton>
       </ItemsWrapper>
 
-      <h3>Reasons</h3>
-      {GenerateSection({ section: 'reasons', form, setForm })}
+      <ReasonsWrapper>
+        <h3>Reasons</h3>
+        <div>
+          <div>
+            <GenerateOnlyInput
+              input={{
+                inputType: defaultForm.reasons.textReasons.inputType,
+                value: form.reasons.textReasons,
+              }}
+              setFunction={(value) => {
+                setForm({
+                  ...form,
+                  reasons: {
+                    ...form.reasons,
+                    textReasons: value as typeof form.reasons.textReasons,
+                  },
+                });
+              }}
+            />
+          </div>
+          <div>{GenerateSection({ section: 'reasons', form, setForm })}</div>
+        </div>
+      </ReasonsWrapper>
       <h3>Agreements</h3>
       {GenerateInputField({
         name: 'Agreements',

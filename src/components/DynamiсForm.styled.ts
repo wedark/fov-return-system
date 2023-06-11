@@ -52,7 +52,6 @@ export const StyledInput = styled.input`
     width: auto;
   }
 
-  /* input with class input-incremental */
   &.input-incremental {
     width: 5em;
   }
@@ -80,6 +79,46 @@ export const ItemsWrapper = styled.div`
     border-collapse: separate;
     border-spacing: 0.5rem 0.25rem;
     margin-left: -0.5rem;
+  }
+`;
+
+export const ReasonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  & > div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+
+    & > div {
+      height: 100%;
+    }
+    & > div:last-child {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      row-gap: 1rem;
+      column-gap: 2rem;
+      width: 65%;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    min-width: 15em;
+    min-height: 7em;
+    max-height: 12em;
+    height: 100%;
+    resize: vertical;
+    padding: 0.25rem 0.5rem;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 0.25rem;
   }
 `;
 
