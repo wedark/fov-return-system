@@ -6,6 +6,7 @@ import path from 'path';
 import { NextApiResponse } from 'next';
 import { checkIfCompleted } from '~/utils/formCheck';
 import { SimpleForm } from '~/types/form';
+import { formValidator } from '~/utils/sharedManager';
 
 // EDIT
 export async function POST(request: Request) {
@@ -35,6 +36,11 @@ export async function POST(request: Request) {
       status: 404,
       statusText: 'File does not exist | use new file NOT edit',
     });
+  }
+
+  const validate = await formValidator(bodyJson);
+  if (validate) {
+    return validate;
   }
 
   const formCompleted = checkIfCompleted(bodyJson);

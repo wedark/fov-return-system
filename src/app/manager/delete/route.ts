@@ -19,6 +19,5 @@ export async function DELETE(request: Request) {
 
   return new Response(undefined, {
     status: 200,
-    // headers: { 'Set-Cookie': `token=${token}` },
   });
 }

@@ -16,10 +16,7 @@ export function GenerateInputField({
   props?: React.HTMLAttributes<HTMLInputElement> | React.HTMLAttributes<HTMLTextAreaElement>;
 }) {
   return (
-    // add referenceId to props
-    <LabeledInput
-    // style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '0.5em' }}
-    >
+    <LabeledInput>
       <span>{toCapitalizedWords(name)}</span>
       <GenerateOnlyInput
         input={input}
@@ -75,13 +72,13 @@ export function GenerateOnlyInput({
               : ''
             : setVal;
         setFunction(checkedVal as typeof input.value);
-        // remove class 'highlight'
+
         const el = document.getElementById(referenceId);
         const errorSpan = document.getElementById(`${referenceId}-error`);
         if (el) {
           el.classList.remove('highlight');
         }
-        // delete the error span
+
         if (errorSpan) {
           errorSpan.remove();
         }

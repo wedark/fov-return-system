@@ -4,6 +4,7 @@ import path from 'path';
 
 import { SimpleForm } from '~/types/form';
 import { checkIfCompleted, validateForm } from '~/utils/formCheck';
+import { formValidator } from '~/utils/sharedManager';
 
 // NEW
 export async function POST(request: Request) {
@@ -27,13 +28,9 @@ export async function POST(request: Request) {
     });
   }
 
-  const formErrors = validateForm(bodyJson);
-
-  if (formErrors.length > 0) {
-    return new Response(JSON.stringify(formErrors), {
-      status: 400,
-      statusText: 'Bad Request: formErrors',
-    });
+  const validate = await formValidator(bodyJson);
+  if (validate) {
+    return validate;
   }
 
   const formCompleted = checkIfCompleted(bodyJson);

@@ -5,7 +5,7 @@ export function checkIfCompleted(form: SimpleForm) {
 
   const usedActions = Object.values(actions).filter((action) => action.used === true);
 
-  if (usedActions.length === 0) return false;
+  if (usedActions.length === 0) return true;
 
   let completed = true;
 
