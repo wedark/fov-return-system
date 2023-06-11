@@ -9,12 +9,5 @@ import FilesOverview from '~/components/FilesOverview';
 export default function Overview() {
   // console.log(formsJsonFiles);
 
-  return (
-    // read all JSONs and show them
-    // maybe update every 5 mins
-    <div>
-      <h1>Overview</h1>
-      <FilesOverview />
-    </div>
-  );
+  return <FilesOverview />;
 }
