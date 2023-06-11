@@ -15,15 +15,18 @@ import {
   ActionsWrapper,
 } from './DynamiсForm.styled';
 import { StyledButton } from './FilesOverview.styles';
+import { ValidationError } from '~/utils/formCheck';
 
 export default function DynamicForm({
   form,
   setForm,
   action,
+  validationErrors,
 }: {
   form: SimpleForm;
   setForm: React.Dispatch<React.SetStateAction<SimpleForm>>;
   action: string;
+  validationErrors: ValidationError[];
 }) {
   return <DisplayForm form={form} setForm={setForm} action={action} />;
 }
@@ -44,6 +47,7 @@ function DisplayForm({
       {action === 'new' ? (
         <GenerateInputField
           name="customerNumber"
+          referenceId="customerNumber"
           input={{
             inputType: defaultForm.customerNumber.inputType,
             value: form.customerNumber,
@@ -103,6 +107,7 @@ function DisplayForm({
                 inputType: defaultForm.reasons.textReasons.inputType,
                 value: form.reasons.textReasons,
               }}
+              referenceId="reasons.textReasons"
               setFunction={(value) => {
                 setForm({
                   ...form,
@@ -124,6 +129,7 @@ function DisplayForm({
             inputType: defaultForm.agreements.text.inputType,
             value: form.agreements.text,
           },
+          referenceId: 'agreements.text',
           setFunction: (value) => {
             setForm({
               ...form,

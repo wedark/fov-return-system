@@ -26,6 +26,7 @@ function GenerateItemFields({
                 // value: form.items[Number(numKey)][key as keyof Item],
                 value: value as typeof value,
               }}
+              referenceId={`items.${numKey}.${key}`}
               setFunction={(value) => {
                 setForm((prev: SimpleForm) => {
                   const newItems = {

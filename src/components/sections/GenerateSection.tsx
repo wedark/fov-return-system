@@ -19,6 +19,7 @@ export default function GenerateSection({
             <GenerateInputField
               key={key}
               name={key}
+              referenceId={`${section}.${key}`}
               input={{
                 inputType: defaultForm[section][key].inputType,
 

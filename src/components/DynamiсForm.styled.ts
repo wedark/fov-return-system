@@ -55,6 +55,11 @@ export const StyledInput = styled.input`
   &.input-incremental {
     width: 5em;
   }
+
+  &.highlight {
+    border: 2px solid red;
+    background: rgba(255, 0, 0, 0.1);
+  }
 `;
 
 export const LabeledInput = styled.div`

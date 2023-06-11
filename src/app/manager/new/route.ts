@@ -3,7 +3,7 @@ import { existsSync } from 'fs';
 import path from 'path';
 
 import { SimpleForm } from '~/types/form';
-import { checkIfCompleted } from '~/utils/formCheck';
+import { checkIfCompleted, validateForm } from '~/utils/formCheck';
 
 // NEW
 export async function POST(request: Request) {
@@ -24,6 +24,15 @@ export async function POST(request: Request) {
     return new Response(undefined, {
       status: 409,
       statusText: 'Conflict: File already exists | use edit NOT new',
+    });
+  }
+
+  const formErrors = validateForm(bodyJson);
+
+  if (formErrors.length > 0) {
+    return new Response(JSON.stringify(formErrors), {
+      status: 400,
+      statusText: 'Bad Request: formErrors',
     });
   }
 

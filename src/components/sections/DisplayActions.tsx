@@ -20,6 +20,7 @@ export default function DisplayActions({
           >
             <GenerateInputField
               name={key}
+              referenceId={`actions.${key}.used`}
               input={{
                 inputType: 'checkbox',
                 value: value.used as boolean,
@@ -36,6 +37,7 @@ export default function DisplayActions({
             />
             <GenerateInputField
               name="Performed by"
+              referenceId={`actions.${key}.performedBy`}
               input={{
                 inputType: 'text',
                 value: value.performedBy as string,
@@ -53,6 +55,7 @@ export default function DisplayActions({
             />
             <GenerateInputField
               name="Completed"
+              referenceId={`actions.${key}.completed`}
               input={{
                 inputType: 'date',
                 value: String(value.completed),

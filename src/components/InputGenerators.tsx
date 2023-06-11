@@ -4,31 +4,41 @@ import { LabeledInput, StyledInput } from './DynamiсForm.styled';
 
 export function GenerateInputField({
   name,
+  referenceId,
   input,
   setFunction,
   ...props
 }: {
   name: string;
+  referenceId: string;
   input: SimpleInput;
   setFunction: (value: typeof input.value) => void;
   props?: React.HTMLAttributes<HTMLInputElement> | React.HTMLAttributes<HTMLTextAreaElement>;
 }) {
   return (
+    // add referenceId to props
     <LabeledInput
     // style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: '0.5em' }}
     >
       <span>{toCapitalizedWords(name)}</span>
-      <GenerateOnlyInput input={input} setFunction={setFunction} {...props} />
+      <GenerateOnlyInput
+        input={input}
+        setFunction={setFunction}
+        referenceId={referenceId}
+        {...props}
+      />
     </LabeledInput>
   );
 }
 
 export function GenerateOnlyInput({
   input,
+  referenceId,
   setFunction,
   ...props
 }: {
   input: SimpleInput;
+  referenceId: string;
   setFunction: (value: typeof input.value) => void;
   props?: React.HTMLAttributes<HTMLInputElement> | React.HTMLAttributes<HTMLTextAreaElement>;
 }) {
@@ -52,6 +62,7 @@ export function GenerateOnlyInput({
           ? (input.value as number)
           : (input.value as string)
       }
+      id={referenceId}
       checked={inputType === 'checkbox' ? (input.value as boolean) : undefined}
       onChange={(e) => {
         const setVal = inputType === 'checkbox' ? e.target.checked : e.target.value;
@@ -64,6 +75,11 @@ export function GenerateOnlyInput({
               : ''
             : setVal;
         setFunction(checkedVal as typeof input.value);
+        // remove class 'highlight'
+        const el = document.getElementById(referenceId);
+        if (el) {
+          el.classList.remove('highlight');
+        }
       }}
       className={inputType === 'incremental' ? 'input-incremental' : ''}
       // if shortText width 5em

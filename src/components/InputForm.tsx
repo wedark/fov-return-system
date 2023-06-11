@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import { SimpleForm } from '~/types/form';
-
+import type { ValidationError } from '~/utils/formCheck';
 import DynamicForm from './DynamicForm';
 import PreviewForm from './FormPreview';
 import {
@@ -25,6 +25,37 @@ export default function InputForm({
   folder?: string;
 }) {
   const [form, setForm] = useState<SimpleForm>(simplifiedForm);
+  const [validationErrors, setValidationErrors] = useState<ValidationError[]>([]);
+
+  // when form is changed remove all validation errors
+
+  useEffect(() => {
+    const fields = validationErrors.map((error) => error.referenceId);
+
+    fields.forEach((field) => {
+      console.log('add highlight', field);
+      const element = document.getElementById(field);
+      if (element) {
+        element.classList.add('highlight');
+      }
+    });
+
+    return () => {
+      fields.forEach((field) => {
+        console.log('remove highlight', field);
+        const element = document.getElementById(field);
+        if (element) {
+          element.classList.remove('highlight');
+        }
+      });
+    };
+  }, [validationErrors]);
+
+  // handle the fields that are highlighted and unhighlighte them when they are changed
+  // useEffect(() => {
+  //   const fields = highlightedFields.filter((field) => {
+
+  //   }, [form]);
 
   const router = useRouter();
 
@@ -80,7 +111,12 @@ export default function InputForm({
 
         <FormEditWrapper>
           <h2>Form Editor</h2>
-          <DynamicForm form={form} setForm={setForm} action={action} />
+          <DynamicForm
+            form={form}
+            setForm={setForm}
+            action={action}
+            validationErrors={validationErrors}
+          />
         </FormEditWrapper>
         <PreviewWrapper>
           <h2>Preview</h2>
@@ -94,9 +130,13 @@ export default function InputForm({
                 method: 'POST',
                 body: JSON.stringify(form),
               }).then((res) => {
-                console.log(res);
                 if (res.ok) {
+                  console.log(res);
                   router.push('/overview');
+                } else if (res.status === 400) {
+                  res.json().then((res) => {
+                    setValidationErrors(res);
+                  });
                 } else {
                   alert(res.statusText);
                 }
