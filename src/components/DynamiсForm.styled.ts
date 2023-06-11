@@ -92,7 +92,7 @@ export const ReasonsWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 2rem;
 
     & > div:first-child {
       height: 100%;
