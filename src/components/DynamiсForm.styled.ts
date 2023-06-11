@@ -150,21 +150,23 @@ export const ReasonsWrapper = styled.div`
       padding-right: 1rem;
       height: 100%;
       border-right: 1px solid black;
+      width: 35%;
     }
     & > div:last-child {
+      background: red;
       padding-left: 1rem;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       row-gap: 1rem;
       column-gap: 2rem;
-      width: 65%;
+      width: 60%;
     }
   }
 
   textarea {
     width: 100%;
-    min-width: 15em;
+    min-width: 10em;
     min-height: 7em;
     max-height: 12em;
     height: 100%;
