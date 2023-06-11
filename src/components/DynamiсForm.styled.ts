@@ -67,10 +67,21 @@ export const LabeledInput = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
+  position: relative;
 
   & > span {
     width: auto;
     border-bottom: 1px solid black;
+  }
+
+  /* span with class error */
+  & > span.error {
+    color: red;
+    border: none;
+    position: absolute;
+    font-size: 0.75rem;
+    bottom: -1rem;
+    left: 0;
   }
 `;
 

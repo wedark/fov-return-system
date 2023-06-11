@@ -30,18 +30,26 @@ export default function InputForm({
   // when form is changed remove all validation errors
 
   useEffect(() => {
-    const fields = validationErrors.map((error) => error.referenceId);
+    // const fields = validationErrors.map((error) => {
 
-    fields.forEach((field) => {
+    // }
+    validationErrors.forEach((error) => {
+      const field = error.referenceId;
       console.log('add highlight', field);
       const element = document.getElementById(field);
       if (element) {
         element.classList.add('highlight');
+        const errorElement = document.createElement('span');
+        errorElement.classList.add('error');
+        errorElement.id = `${field}-error`;
+        errorElement.innerText = error.message;
+        element.parentElement?.insertBefore(errorElement, element.nextSibling);
       }
     });
 
     return () => {
-      fields.forEach((field) => {
+      validationErrors.forEach((error) => {
+        const field = error.referenceId;
         console.log('remove highlight', field);
         const element = document.getElementById(field);
         if (element) {

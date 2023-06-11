@@ -77,8 +77,13 @@ export function GenerateOnlyInput({
         setFunction(checkedVal as typeof input.value);
         // remove class 'highlight'
         const el = document.getElementById(referenceId);
+        const errorSpan = document.getElementById(`${referenceId}-error`);
         if (el) {
           el.classList.remove('highlight');
+        }
+        // delete the error span
+        if (errorSpan) {
+          errorSpan.remove();
         }
       }}
       className={inputType === 'incremental' ? 'input-incremental' : ''}
