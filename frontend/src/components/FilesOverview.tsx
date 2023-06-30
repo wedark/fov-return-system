@@ -1,12 +1,20 @@
 'use client';
-import Link from 'next/link';
+
 import { SimpleForm } from '~/types/form';
-import { formsJsonFiles } from '~/utils/allForms';
+// import { formsJsonFiles } from '~/utils/allForms';
 import { ControlDiv, OverviewTableWrapper, StyledButton, StyledLink } from './FilesOverview.styles';
 import { Fragment } from 'react';
+import { useFetchFormsOfType } from '~/queries/useFetchFormsOfType';
 const headings = ['Customer number', 'Business name'];
 
 export default function FilesOverview() {
+  const { data: formsJsonFilesActive } = useFetchFormsOfType('active');
+  const { data: formsJsonFilesCompleted } = useFetchFormsOfType('completed');
+  const formsJsonFiles = {
+    active: formsJsonFilesActive,
+    completed: formsJsonFilesCompleted,
+  };
+
   return (
     <main>
       <h1>Overview</h1>
@@ -22,7 +30,7 @@ export default function FilesOverview() {
               <h2>{folder}</h2>
               <GenerateOverviewTable
                 formsArray={formsJsonFiles[folder as keyof typeof formsJsonFiles]}
-                folder={folder}
+                folder={folder as 'active' | 'completed'}
               />
             </Fragment>
           );
@@ -40,8 +48,8 @@ function GenerateOverviewTable({
   formsArray,
   folder,
 }: {
-  formsArray: ImportedFile[];
-  folder: string;
+  formsArray: ImportedFile[] | undefined;
+  folder: 'active' | 'completed';
 }) {
   return (
     <table>
@@ -59,45 +67,81 @@ function GenerateOverviewTable({
           ))}
         </tr>
       </thead>
-      <tbody>
-        {formsArray.map((formJsonFile) => {
-          const obj = formJsonFile.imported as SimpleForm;
-          const outputs = [obj.customerNumber, obj.customerDetails.businessName];
+      {formsArray?.length && (
+        <tbody>
+          {formsArray.map((formJsonFile) => {
+            const obj = formJsonFile.imported as SimpleForm;
+            const outputs = [obj.customerNumber, obj.customerDetails.businessName];
 
-          return (
-            <tr key={formJsonFile.filename}>
-              {outputs.map((output) => (
-                <td key={output}>
-                  <StyledLink
-                    href={`/edit/${folder}/${formJsonFile.filename}`}
-                    key={formJsonFile.filename}
-                    style={{ width: '100%' }}
-                  >
-                    {output}
-                  </StyledLink>
-                </td>
-              ))}
-              <td
-                style={{
-                  border: 'none',
-                  width: '5%',
-                }}
-              >
-                <StyledButton
-                  onClick={() => {
-                    fetch(`/manager/delete?filename=${formJsonFile.filename}?${folder}`, {
-                      body: JSON.stringify({ filename: formJsonFile.filename }),
-                      method: 'DELETE',
-                    });
-                  }}
-                >
-                  Delete
-                </StyledButton>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
+            return (
+              <TableRow
+                folder={folder}
+                formJsonFile={formJsonFile}
+                outputs={outputs}
+                key={formJsonFile.filename}
+              />
+            );
+          })}
+        </tbody>
+      )}
     </table>
+  );
+}
+
+function TableRow({
+  folder,
+  formJsonFile,
+  outputs,
+}: {
+  folder: 'active' | 'completed';
+  formJsonFile: ImportedFile;
+  outputs: (string | number)[];
+}) {
+  // TODO use useSWRMutation (and optimistic UI)
+  const { data, mutate } = useFetchFormsOfType(folder);
+
+  return (
+    <tr key={formJsonFile.filename}>
+      {outputs.map((output) => (
+        <td key={output}>
+          <StyledLink
+            href={`/edit/${folder}/${formJsonFile.filename}`}
+            key={formJsonFile.filename}
+            style={{ width: '100%' }}
+          >
+            {output}
+          </StyledLink>
+        </td>
+      ))}
+      <td
+        style={{
+          border: 'none',
+          width: '5%',
+        }}
+      >
+        <StyledButton
+          onClick={async () => {
+            await fetch(`http://localhost:8000/${folder}/${formJsonFile.filename}`, {
+              method: 'DELETE',
+            });
+
+            if (data === undefined) return;
+
+            let newArray = [...data];
+            const theElementIndex = newArray.findIndex(
+              (importedFile) => importedFile.filename === formJsonFile.filename,
+            );
+
+            // @ts-expect-error
+            newArray[theElementIndex] = undefined;
+            newArray = newArray.filter(Boolean);
+
+            mutate(newArray);
+          }}
+        >
+          Delete
+        </StyledButton>
+      </td>
+    </tr>
   );
 }

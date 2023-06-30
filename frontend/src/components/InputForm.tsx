@@ -30,7 +30,6 @@ export default function InputForm({
   useEffect(() => {
     validationErrors.forEach((error) => {
       const field = error.referenceId;
-      console.log('add highlight', field);
       const element = document.getElementById(field);
       if (element) {
         element.classList.add('highlight');
@@ -45,7 +44,6 @@ export default function InputForm({
     return () => {
       validationErrors.forEach((error) => {
         const field = error.referenceId;
-        console.log('remove highlight', field);
         const element = document.getElementById(field);
         if (element) {
           element.classList.remove('highlight');
@@ -97,18 +95,18 @@ export default function InputForm({
           <PreviewForm form={form} />
           <button
             onClick={() => {
-              console.log(form);
-
-              fetch(`/manager/${action}?${folder || ''}`, {
-                method: 'POST',
+              fetch(`http://localhost:8000/${action === 'new' ? '' : `${folder || ''}`}`, {
+                method: action === 'new' ? 'POST' : 'PUT',
                 body: JSON.stringify(form),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
               }).then((res) => {
                 if (res.ok) {
-                  console.log(res);
                   router.push('/overview');
                 } else if (res.status === 400) {
                   res.json().then((res) => {
-                    setValidationErrors(res);
+                    setValidationErrors(res.message);
                   });
                 } else {
                   alert(res.statusText);
@@ -124,6 +122,6 @@ export default function InputForm({
   );
 }
 
-function typeSafeObjectKeys<T extends object>(obj: T) {
-  return Object.keys(obj) as (keyof T)[];
-}
+// function typeSafeObjectKeys<T extends object>(obj: T) {
+//   return Object.keys(obj) as (keyof T)[];
+// }

@@ -1,15 +1,14 @@
+'use client';
+import { SWRProvider } from '~/app/swr-provider';
 import InputForm from '~/components/InputForm';
+import { useFetchForm } from '~/queries/useFetchForm';
 
-export default async function Edit({ params }: { params: { folder: string; filename: string } }) {
-  // if not - create file
-  const imported = await import(`../../../../../files/${params.folder}/${params.filename}`)
-    .then(JSON.stringify)
-    .then(JSON.parse);
-  // .then(console.log);
+export default function Edit({ params }: { params: { folder: string; filename: string } }) {
+  const { data: imported } = useFetchForm(`${params.folder}/${params.filename}`);
 
-  // console.log('imported:', imported);
-  // console.log('🚀 ~ file: page.tsx:5 ~ Edit ~ imported:', imported);
-
-  // console.log(require.resolve(`./files/${params.filename}`));
-  return <InputForm simplifiedForm={imported} action="edit" folder={params.folder} />;
+  return (
+    <SWRProvider>
+      {imported && <InputForm simplifiedForm={imported} action="edit" folder={params.folder} />}
+    </SWRProvider>
+  );
 }

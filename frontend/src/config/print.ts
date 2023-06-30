@@ -4,8 +4,3 @@ export const settings = {
 
   // appearAsMediaPrint: false,
 };
-// console.log('settings', settings);
-
-// window.settings = settings;
-
-// export const appearAsMediaPrint = true;

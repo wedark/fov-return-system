@@ -11,7 +11,6 @@ export default function StyledComponentsRegistry({ children }: { children: React
   // const global styles
 
   useServerInsertedHTML(() => {
-    // console.log('add styled-components');
     const styles = styledComponentsStyleSheet.getStyleElement();
     styledComponentsStyleSheet.instance.clearTag();
     return <React.Fragment key="styled-components-registry">{styles}</React.Fragment>;

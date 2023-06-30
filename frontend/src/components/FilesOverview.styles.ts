@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { styled } from 'styled-components';
-import css from 'styled-jsx/css';
-import { string } from 'zod';
 
 export const ControlDiv = styled.div`
   width: 80%;
