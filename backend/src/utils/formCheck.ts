@@ -29,11 +29,11 @@ export function validateForm(form: SimpleForm): ValidationError[] {
   const {
     customerNumber,
     customerDetails,
-    address,
-    items,
-    reasons,
-    agreements,
-    actions,
+    // address,
+    // items,
+    // reasons,
+    // agreements,
+    // actions,
   } = form;
 
   // Check if customerNumber is valid
