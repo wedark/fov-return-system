@@ -121,6 +121,11 @@ function TableRow({
       >
         <StyledButton
           onClick={async () => {
+            const confirmation = confirm(
+              `Are you sure you want to 𝗗𝗘𝗟𝗘𝗧𝗘 ${formJsonFile.filename}?`,
+            );
+            if (!confirmation) return;
+
             await fetch(`http://localhost:8000/${folder}/${formJsonFile.filename}`, {
               method: 'DELETE',
             });
