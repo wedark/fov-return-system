@@ -111,6 +111,7 @@ export const PreviewWrapper = styled.div`
       display: none;
     }
   `)}
+
   & > button {
     margin-top: 1rem;
   }

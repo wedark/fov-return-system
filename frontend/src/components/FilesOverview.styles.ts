@@ -23,21 +23,20 @@ const outlineStyle = `
   }
 `;
 
-export const StyledLink = styled(Link)<{ textsize?: string; outlined?: string }>`
+export const StyledLink = styled(Link)<{ hovColor?: string; textsize?: string; outlined?: string }>`
   font-size: ${({ textsize = '1rem' }) => textsize};
   cursor: pointer;
   color: var(--eerieBlack);
   transition-duration: 0.4s;
   transition-property: color, background-color;
 
-  ${({ outlined = false }) =>
+  ${({ outlined = false, hovColor = 'var(--coquelicot)' }) =>
     outlined
       ? outlineStyle
       : `
-
-    &:hover {
-      color: var(--coquelicot);
-    }
+        &:hover {
+        color: ${hovColor};
+      }
   `}
 `;
 

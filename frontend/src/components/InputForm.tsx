@@ -13,7 +13,8 @@ import {
   PrintModeSwitch,
 } from './InputForm.styled';
 import { useRouter } from 'next/navigation';
-import { StyledButton } from './FilesOverview.styles';
+import { StyledButton, StyledLink } from './FilesOverview.styles';
+// import Link from 'next/link';
 
 export default function InputForm({
   simplifiedForm,
@@ -61,6 +62,11 @@ export default function InputForm({
     <>
       {process.env.NODE_ENV === 'development' && (
         <PrintModeSwitch
+          style={{
+            position: 'absolute',
+            top: '1rem',
+            right: '1rem',
+          }}
           type="button"
           onClick={() => {
             const currentPrint = localStorage.getItem('print');
@@ -73,6 +79,18 @@ export default function InputForm({
         </PrintModeSwitch>
       )}
 
+      <StyledLink
+        outlined="true"
+        textsize="0.9rem"
+        href="/overview"
+        style={{
+          position: 'absolute',
+          top: '1rem',
+          left: '1rem',
+        }}
+      >
+        Back to overview
+      </StyledLink>
       <FormEditorHeading>Form Editor</FormEditorHeading>
       <InputFormWrapper>
         <FormEditWrapper>
