@@ -9,12 +9,12 @@ import {
   FormEditWrapper,
   FormEditorHeading,
   InputFormWrapper,
+  LinkBack,
   PreviewWrapper,
   PrintModeSwitch,
 } from './InputForm.styled';
 import { useRouter } from 'next/navigation';
-import { StyledButton, StyledLink } from './FilesOverview.styles';
-// import Link from 'next/link';
+import { StyledButton } from './FilesOverview.styles';
 
 export default function InputForm({
   simplifiedForm,
@@ -79,7 +79,7 @@ export default function InputForm({
         </PrintModeSwitch>
       )}
 
-      <StyledLink
+      <LinkBack
         outlined="true"
         textsize="0.9rem"
         href="/overview"
@@ -90,7 +90,7 @@ export default function InputForm({
         }}
       >
         Back to overview
-      </StyledLink>
+      </LinkBack>
       <FormEditorHeading>Form Editor</FormEditorHeading>
       <InputFormWrapper>
         <FormEditWrapper>

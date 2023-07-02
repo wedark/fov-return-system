@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { mediaPrintWithConfig } from '~/utils/mediaPrintWithConfig';
+import { StyledLink } from './FilesOverview.styles';
 
 export const InputFormWrapper = styled.div`
   width: 95vw;
@@ -32,6 +33,12 @@ export const InputFormWrapper = styled.div`
 
   ${mediaPrintWithConfig(css`
     display: contents;
+  `)}
+`;
+
+export const LinkBack = styled(StyledLink)`
+  ${mediaPrintWithConfig(css`
+    display: none;
   `)}
 `;
 
