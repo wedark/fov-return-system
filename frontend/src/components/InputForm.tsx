@@ -40,7 +40,10 @@ export default function InputForm({
         element.parentElement?.insertBefore(errorElement, element.nextSibling);
       }
     });
+    // focus on first error
 
+    const firstErrorElement = document.getElementById(validationErrors[0]?.referenceId);
+    if (firstErrorElement) firstErrorElement.focus();
     return () => {
       validationErrors.forEach((error) => {
         const field = error.referenceId;
@@ -99,8 +102,8 @@ export default function InputForm({
                 method: action === 'new' ? 'POST' : 'PUT',
                 body: JSON.stringify(form),
                 headers: {
-                  'Content-Type': 'application/json'
-                }
+                  'Content-Type': 'application/json',
+                },
               }).then((res) => {
                 if (res.ok) {
                   router.push('/overview');
