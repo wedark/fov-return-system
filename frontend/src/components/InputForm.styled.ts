@@ -4,7 +4,7 @@ import { mediaPrintWithConfig } from '~/utils/mediaPrintWithConfig';
 export const InputFormWrapper = styled.div`
   width: 95vw;
   /* outline: 1px solid red; */
-  /* height: 80vh; */
+
   margin-inline: auto;
   margin-top: 1rem;
   margin-bottom: 3rem;
@@ -37,11 +37,12 @@ export const InputFormWrapper = styled.div`
 
 const sharedWrapperStyle = css`
   & > div {
+    /* outline: 1px solid black; */
+
     width: 98%;
     box-sizing: border-box;
     border: 1px solid black;
     margin-top: 1rem;
-    /* outline: 1px solid black; */
     ${mediaPrintWithConfig(css`
       width: 100%;
       margin-top: 0;
@@ -66,6 +67,7 @@ const aspectRatios = {
 
 const paperStyle = css`
   /* background-color: yellow; */
+
   aspect-ratio: ${aspectRatios.a4};
   overflow: scroll;
 
@@ -103,25 +105,26 @@ export const PreviewWrapper = styled.div`
     padding-left: 0;
 
     display: contents;
+
+    & > h2,
+    button {
+      display: none;
+    }
   `)}
+  & > button {
+    margin-top: 1rem;
+  }
 
   ${sharedWrapperStyle}
 
   & > div {
     ${paperStyle}
   }
-
-  ${mediaPrintWithConfig(css`
-    & > h2 {
-      display: none;
-    }
-  `)}
 `;
 export const CustomerDetailsWrapper = styled.div`
   display: flex;
   flex-direction: row;
 
-  /* first div child */
   & > div:first-child {
     border-right: 1px solid black;
   }
@@ -179,8 +182,9 @@ export const ReasonWrapper = styled(CustomerDetailsWrapper)`
 `;
 
 export const SpanValueStyle = styled.span<{ size?: number; inline?: string }>`
-  display: flex;
   /* outline: 1px solid black; */
+
+  display: flex;
   flex-direction: ${({ inline = 'row' }) => inline};
   gap: 0.5rem;
   margin-top: 0.5rem;
@@ -191,7 +195,6 @@ export const SpanValueStyle = styled.span<{ size?: number; inline?: string }>`
   & > span {
     box-sizing: border-box;
     border-bottom: 1px solid black;
-    /* text-decoration: underline; */
     color: #404040;
     ${mediaPrintWithConfig(css`
       border-color: #a9a9a9;
@@ -200,12 +203,12 @@ export const SpanValueStyle = styled.span<{ size?: number; inline?: string }>`
 `;
 
 export const ItemTableStyled = styled.table`
+  /* border: 1px solid black; */
+
   width: 100%;
   border-collapse: collapse;
-  /* border: 1px solid black; */
   margin-bottom: 0.5rem;
 
-  /* tr with class no-border */
   & > tbody > tr.no-border > td,
   & > thead > tr.no-border > th {
     border: none;
@@ -222,10 +225,10 @@ export const ItemTableStyled = styled.table`
 `;
 
 export const InternalDetailsTable = styled.div`
+  /* border: 1px solid black; */
+
   display: grid;
   grid-template-columns: 1.375fr 1fr 1fr;
-
-  /* border: 1px solid black; */
 
   & > span {
     border: 1px solid black;

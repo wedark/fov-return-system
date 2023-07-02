@@ -13,7 +13,7 @@ import {
   PrintModeSwitch,
 } from './InputForm.styled';
 import { useRouter } from 'next/navigation';
-// import Link from 'next/link';
+import { StyledButton } from './FilesOverview.styles';
 
 export default function InputForm({
   simplifiedForm,
@@ -75,15 +75,6 @@ export default function InputForm({
 
       <FormEditorHeading>Form Editor</FormEditorHeading>
       <InputFormWrapper>
-        {/* <div>
-          <h2>Default</h2>
-          <textarea value={JSON.stringify(defaultForm, null, 2)} readOnly />
-        </div> */}
-        {/* <div>
-          <h2>Simplified</h2>
-          <textarea value={JSON.stringify(simplifiedForm, null, 2)} readOnly />
-        </div> */}
-
         <FormEditWrapper>
           <h2>Form Editor</h2>
           <DynamicForm
@@ -96,7 +87,9 @@ export default function InputForm({
         <PreviewWrapper>
           <h2>Preview</h2>
           <PreviewForm form={form} />
-          <button
+          <StyledButton
+            backcolor="lime"
+            textcolor="black"
             onClick={() => {
               fetch(`http://localhost:8000/${action === 'new' ? '' : `${folder || ''}`}`, {
                 method: action === 'new' ? 'POST' : 'PUT',
@@ -118,13 +111,9 @@ export default function InputForm({
             }}
           >
             Save
-          </button>
+          </StyledButton>
         </PreviewWrapper>
       </InputFormWrapper>
     </>
   );
 }
-
-// function typeSafeObjectKeys<T extends object>(obj: T) {
-//   return Object.keys(obj) as (keyof T)[];
-// }
