@@ -24,7 +24,11 @@ export interface ValidationError {
 export function validateForm(form: SimpleForm): ValidationError[] {
   const errors: ValidationError[] = [];
 
-  const { customerNumber, customerDetails, address, items, reasons, agreements, actions } = form;
+  const {
+    customerNumber,
+    customerDetails,
+    //  address, items, reasons, agreements, actions
+  } = form;
 
   // Check if customerNumber is valid
   if (!customerNumber || customerNumber < 1) {

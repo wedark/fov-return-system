@@ -1,7 +1,7 @@
 import { SimpleForm } from '~/types/form';
 import {
   CustomerDetailsWrapper,
-  InternalDetailsTable,
+  // InternalDetailsTable,
   ItemTableStyled,
   PreviewTextarea,
   ReasonWrapper,

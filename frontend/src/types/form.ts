@@ -1,6 +1,6 @@
 type InputType = 'date' | 'number' | 'incremental' | 'text' | 'textarea' | 'checkbox' | 'shortText';
 
-type SectionType = 'mix' | 'items' | 'reasons' | 'agreements' | 'actions';
+// type SectionType = 'mix' | 'items' | 'reasons' | 'agreements' | 'actions';
 export const sectionNames = [
   'customerDetails',
   'address',
